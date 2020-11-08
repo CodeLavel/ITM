@@ -96,32 +96,32 @@
                             <li>
                                 <a href="{{ url('categories') }}">หมวดหมู่</a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="{{ url('catagories') }}">สถานที่ครุภัณฑ์</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                     @endif
 
-                    <li>
+                    {{-- <li>
                         <a href="{{url('home')}}">
                             <i class="fa fa-list"></i>
                             <span> รายการครุภัณฑ์ </span>
                         </a>
-                    </li>
+                    </li> --}}
 
-                    <li>
+                    {{-- <li>
                         <a href="{{url('orders')}}">
                             <i class="fas fa-clipboard-list"></i>
                             <span> รายการยืมครุภัณฑ์ </span>
                         </a>
-                    </li>
-                    <li>
+                    </li> --}}
+                    {{-- <li>
                         <a href="{{url('orders')}}">
                             <i class="fas fa-clipboard-list"></i>
                             <span> ข้อมูลพนักงาน </span>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
 
             </div>
