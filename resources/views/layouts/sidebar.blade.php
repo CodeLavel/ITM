@@ -99,6 +99,9 @@
                             {{-- <li>
                                 <a href="{{ url('catagories') }}">สถานที่ครุภัณฑ์</a>
                             </li> --}}
+                            <li>
+                                <a href="{{ url('users') }}">ข้อมูลพนักงาน</a>
+                            </li>
                         </ul>
                     </li>
                     @endif

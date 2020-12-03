@@ -98,4 +98,23 @@ Route::group([
          ->name('catagories.catagory.destroy')->where('id', '[0-9]+');
 });
 
+Route::group([
+     'prefix' => 'users',
+ ], function () {
+     Route::get('/', 'UserController@index')
+          ->name('users.index');
+     Route::get('/create','UserController@create')
+          ->name('users.users.create');
+     Route::get('/show/{users}','UserController@show')
+          ->name('users.users.show')->where('id', '[0-9]+');
+     Route::get('/{users}/edit','UserController@edit')
+          ->name('users.users.edit')->where('id', '[0-9]+');
+     Route::post('/', 'UserController@store')
+          ->name('users.users.store');
+     Route::put('users/{users}', 'UserController@update')
+          ->name('users.users.update')->where('id', '[0-9]+');
+     Route::delete('/users/{users}','UserController@destroy')
+          ->name('users.users.destroy')->where('id', '[0-9]+');
+ });
+
 });

@@ -12,7 +12,7 @@
           <div class="row">
               <div class="col-12">
                   <div class="page-title-box">
-                      <h4 class="page-title">เพิ่มหมวดหมู่</h4>
+                      <h4 class="page-title">เพิ่มผู้ดูแลระบบ</h4>
                   </div>
               </div>
           </div>
@@ -22,23 +22,25 @@
                 <div class="card-box" dir="ltr">
 
             <div class="btn-group btn-group-sm pull-right" role="group">
-                <a href="{{ route('categories.category.index') }}" class="btn btn-primary" title="ดูหมวดหมู่">
+                <a href="{{ route('users.index') }}" class="btn btn-primary" title="ดูหมวดหมู่">
                     <span class="fas fa-eye" aria-hidden="true"></span>
                 </a>
             </div>
 
         <div class="panel-body">
 
-            @if($msg =Session::get('success'))
-              <div class="alert alert-success">
-                {{$msg}}
-              </div>
-              @endif
+            @if ($errors->any())
+                <ul class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
 
-            <form method="POST" action="{{ route('categories.category.store') }}" accept-charset="UTF-8" id="create_category_form" name="create_category_form" class="form-horizontal">
+            <form method="POST" action="{{ route('users.users.store') }}" accept-charset="UTF-8" id="create_users_form" name="create_users_form" class="form-horizontal">
             {{ csrf_field() }}
-            @include ('categories.form', [
-                                        'category' => null,
+            @include ('users.form', [
+                                        'users' => null,
                                       ])
 
                 <div class="form-group">
