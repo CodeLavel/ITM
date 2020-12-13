@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Exception;
 
 class UserController extends Controller
@@ -42,10 +43,11 @@ class UserController extends Controller
             $users_add = array(
                 'username' => $request->username,
                 'email' => $request->email,
-                'password' => $request->password,
+                'password' => Hash::make($request->password),
             );
+            
 
-            User::insert($users_add);
+            User::create($users_add);
 
 
             // $data = $request->getData();
