@@ -80,7 +80,7 @@ class ProcessController extends Controller
         $status= '1';
         $borrow= '4';
         if($cart){
-            $date=date("Y-m-d H:i:s");
+            $date=date("d-m-Y"); //d-m-Y H:i:s
             $newOrder=array("date"=>$date,
             "rdate"=>$rdate,
             "fname"=>$fname,

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Exception;
 
 class ConfirmController extends Controller
 {
@@ -14,11 +15,58 @@ class ConfirmController extends Controller
 
     public function update(Request $request, $id)
     {
+
         $orders = \App\Order::findOrFail($id);
         $orders->status = $request->input('status');
         $orders->comment = $request->input('comment');
         $orders->save();
+        if($orders->status == 2){
+            
+            $params = array(
+                    'id' => $id,
+                    'message' => 'อนุมัติเรียบร้อย', //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
+                    'status'  => $orders->status, 
+                    'comment' => $orders->comment,
+    );
+        }else if($orders->status == 3){
+            
+            $params = array(
+                    'id' => $id,
+                    'message' => 'ไม่อนุมัติ', //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
+                    'status'  => $orders->status, 
+                    'comment' => $orders->comment,
+                );
+        }
+            $api_url = 'https://notify-api.line.me/api/notify';
+            $json = null;
+            //line ส่วนตัว : EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC
+            //line กลุ่ม Codelavel : CBhrL0GWdt3mG8XgMoFQMkKWvMZ1lxxUvhEWtZYUENL
+                $headers = [
+                    'Authorization: Bearer ' . 'EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC'
+                ];
+                $fields = array(
+                    'message' => "ลำดับ : ".$params['id']."\n"."การอนุมัติ : ".$params['message']."\n"."ความคิดเห็น : ".$params['comment'],
+                  );
+                
+                //try {
+                    $ch = curl_init();
+                
+                    curl_setopt($ch, CURLOPT_URL, $api_url);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                    curl_setopt($ch, CURLOPT_POST, count($fields));
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                
+                    $res = curl_exec($ch);
+                    curl_close($ch);
+                
+                    if ($res == false)
+                        throw new Exception(curl_error($ch), curl_errno($ch));
+                
+                    $json = json_decode($res);
 
+        
         return redirect('orders');
 
     }
