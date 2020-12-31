@@ -70,7 +70,56 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return "This is show";
+        $api_url = 'https://notify-api.line.me/api/notify';
+
+        $params = array(
+                "message"        => "รายการยืมครุภัณฑ์", //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
+                 "name"         => "A",
+                 "userID"         => "400068",
+                 "phone"         => "0901837418",
+                //  "lname"         => $lname,
+);
+        $json = null;
+        //line ส่วนตัว : EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC
+        //line กลุ่ม Codelavel : CBhrL0GWdt3mG8XgMoFQMkKWvMZ1lxxUvhEWtZYUENL
+            $headers = [
+                'Authorization: Bearer ' . 'EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC'
+            ];
+            $fields = array(
+                'message' => $params["message"]."\n"."ชื่อ-นามสกุล : ".$params["name"]."\n"."รหัสพนักงาน : ".$params["userID"]."\n"."เบอร์โทร : ".$params["phone"],
+              );
+            
+            //try {
+                $ch = curl_init();
+            
+                curl_setopt($ch, CURLOPT_URL, $api_url);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($ch, CURLOPT_POST, count($fields));
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            
+                $res = curl_exec($ch);
+                curl_close($ch);
+            
+                if ($res == false)
+                    throw new Exception(curl_error($ch), curl_errno($ch));
+            
+                $json = json_decode($res);
+        
+                //$status = $json->status;
+            
+                //var_dump($status);
+            // } catch (Exception $e) {
+            //     throw new Exception($e->getMessage);
+            //}
+        
+        // return $this->render('notify', [
+        //     'model' => $model,
+        //     'json' => $json
+        // ]);
+        
+        // return "This is show";
     }
 
     /**

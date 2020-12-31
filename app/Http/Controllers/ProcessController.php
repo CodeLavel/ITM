@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Models\Durable;
 use App\Cart;
+use Exception;
 
 class ProcessController extends Controller
 {
@@ -114,6 +115,52 @@ class ProcessController extends Controller
                 );
                 $create_orderItem=DB::table("orderitems")->insert($newOrderItem);
             }
+
+            $api_url = 'https://notify-api.line.me/api/notify';
+            
+            $params = array(
+                    'message'        => 'รายการยืมครุภัณฑ์', //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
+                    'order_id'        => $order_id,
+                    'item_name'        => $item_name,
+                     'name'         => $fname,
+                     'lname'         => $lname,
+                     'userID'         => $userID,
+                     'address'         => $address,
+                     'phone'         => $phone,
+                     'place'         => $place,
+                     'date'         => $date,
+    );
+            $json = null;
+            //line ส่วนตัว : EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC
+            //line กลุ่ม Codelavel : CBhrL0GWdt3mG8XgMoFQMkKWvMZ1lxxUvhEWtZYUENL
+                $headers = [
+                    'Authorization: Bearer ' . 'EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC'
+                ];
+                $fields = array(
+                    'message' => $params['message']."\n"."ลำดับ : ".$params['order_id']."\n"."ชื่ออุปกรณ์ : ".$params['item_name']."\n"."ชื่อ-นามสกุล : ".$params['name'] ." ". $params['lname']."\n"."รหัสพนักงาน : ".$params['userID']."\n"."สังกัด : ".$params['address']."\n"."เบอร์โทร : ".$params['phone']."\n"."สถานที่นำไปใช้ : ".$params['place']."\n"."วันที่ส่งคืน : ".$params['date'],
+                  );
+                
+                //try {
+                    $ch = curl_init();
+                
+                    curl_setopt($ch, CURLOPT_URL, $api_url);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                    curl_setopt($ch, CURLOPT_POST, count($fields));
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                
+                    $res = curl_exec($ch);
+                    curl_close($ch);
+                
+                    if ($res == false)
+                        throw new Exception(curl_error($ch), curl_errno($ch));
+                
+                    $json = json_decode($res);
+
+
+
+
             Session::forget("cart");
             $order_info=$newOrder;
             $order_info["order_id"]=$order_id;
