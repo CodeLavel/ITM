@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Models\Category;
 use App\Models\Durable;
 use App\Cart;
@@ -92,8 +93,20 @@ class ProcessController extends Controller
             "status"=>"1",
             "borrow"=>"4"
             );
-            $create_Order=DB::table('orders')->insert($newOrder);
-            $order_id=DB::getPDO()->lastInsertId();
+            
+            
+            // $otp = rand(1000,9999);
+            // Log::info('otp =' . $otp);
+            // $create_Otp=DB::table('otp')->insert($newOrder);
+            
+            // return redirect('/orders/otp');
+
+            // if($otp == ""){
+              $create_Order=DB::table('orders')->insert($newOrder);
+              $order_id=DB::getPDO()->lastInsertId();
+            //}
+
+            
 
             foreach ($cart->items as $item) {
                 $item_id=$item['data']['id'];
@@ -113,6 +126,7 @@ class ProcessController extends Controller
           //        "item_gen"=>$item_gen,
                   "item_amount"=>$item_amount
                 );
+                
                 $create_orderItem=DB::table("orderitems")->insert($newOrderItem);
             }
 
@@ -137,7 +151,15 @@ class ProcessController extends Controller
                     'Authorization: Bearer ' . 'EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC'
                 ];
                 $fields = array(
-                    'message' => $params['message']."\n"."ลำดับ : ".$params['order_id']."\n"."ชื่ออุปกรณ์ : ".$params['item_name']."\n"."ชื่อ-นามสกุล : ".$params['name'] ." ". $params['lname']."\n"."รหัสพนักงาน : ".$params['userID']."\n"."สังกัด : ".$params['address']."\n"."เบอร์โทร : ".$params['phone']."\n"."สถานที่นำไปใช้ : ".$params['place']."\n"."วันที่ส่งคืน : ".$params['date'],
+                    'message' => $params['message']."\n"
+                    ."ลำดับ : ".$params['order_id']."\n"
+                    ."ชื่ออุปกรณ์ : ".$params['item_name']."\n"
+                    ."ชื่อ-นามสกุล : ".$params['name'] ." ". $params['lname']."\n"
+                    ."รหัสพนักงาน : ".$params['userID']."\n"
+                    ."สังกัด : ".$params['address']."\n"
+                    ."เบอร์โทร : ".$params['phone']."\n"
+                    ."สถานที่นำไปใช้ : ".$params['place']."\n"
+                    ."วันที่ส่งคืน : ".$params['date'],
                   );
                 
                 //try {

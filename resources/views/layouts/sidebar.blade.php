@@ -110,8 +110,22 @@
                     </li>
                 <li>
                     <a href="{{ url('users') }}">
-                        <i class="fas fa-list"></i>
+                        <i class="fas fa-address-book"></i>
                         <span> ข้อมูลผู้ดูแลระบบ </span>
+                        {{-- <span class="menu-arrow"></span> --}}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('orders/showordermount') }}">
+                        <i class="fas fa-book-open"></i>
+                        <span> รายการยืมประจำเดือน </span>
+                        {{-- <span class="menu-arrow"></span> --}}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('orders/showorder') }}">
+                        <i class="fas fa-list"></i>
+                        <span> สถิติการยืมทั้งหมด </span>
                         {{-- <span class="menu-arrow"></span> --}}
                     </a>
                 </li>

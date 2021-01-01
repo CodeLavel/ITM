@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Otp as Model;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Exception;
+use Ichtrojan\Otp\Models\Otp as ModelsOtp;
+use Ichtrojan\Otp\Otp;
+use Illuminate\Support\Facades\Log;
+
+
+
 
 class UserController extends Controller
 {
@@ -70,55 +77,12 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $api_url = 'https://notify-api.line.me/api/notify';
+        $otp = rand(1000,9999);
+        Log::info('otp =' . $otp);
+        // $user - User::where('mobile','=', $user->mobile)->update(['otp' => $otp]);
+        print_r($otp);
 
-        $params = array(
-                "message"        => "รายการยืมครุภัณฑ์", //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
-                 "name"         => "A",
-                 "userID"         => "400068",
-                 "phone"         => "0901837418",
-                //  "lname"         => $lname,
-);
-        $json = null;
-        //line ส่วนตัว : EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC
-        //line กลุ่ม Codelavel : CBhrL0GWdt3mG8XgMoFQMkKWvMZ1lxxUvhEWtZYUENL
-            $headers = [
-                'Authorization: Bearer ' . 'EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC'
-            ];
-            $fields = array(
-                'message' => $params["message"]."\n"."ชื่อ-นามสกุล : ".$params["name"]."\n"."รหัสพนักงาน : ".$params["userID"]."\n"."เบอร์โทร : ".$params["phone"],
-              );
-            
-            //try {
-                $ch = curl_init();
-            
-                curl_setopt($ch, CURLOPT_URL, $api_url);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                curl_setopt($ch, CURLOPT_POST, count($fields));
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            
-                $res = curl_exec($ch);
-                curl_close($ch);
-            
-                if ($res == false)
-                    throw new Exception(curl_error($ch), curl_errno($ch));
-            
-                $json = json_decode($res);
-        
-                //$status = $json->status;
-            
-                //var_dump($status);
-            // } catch (Exception $e) {
-            //     throw new Exception($e->getMessage);
-            //}
-        
-        // return $this->render('notify', [
-        //     'model' => $model,
-        //     'json' => $json
-        // ]);
-        
+        // return response()->json([$user], 200);
         // return "This is show";
     }
 
@@ -159,4 +123,6 @@ class UserController extends Controller
         $users->delete();
         return redirect()->route('users.index')->with('success','ลบข้อมูลสำเร็จ');
     }
+
+
 }
