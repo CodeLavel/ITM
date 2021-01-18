@@ -71,10 +71,23 @@
 
                                       <script>
                                           function Calculation() {
+                                              
                                               var num1 = document.getElementById('num1').value;
                                               var num2 = document.getElementById('num2').value;
                                               document.getElementById('sum').value = parseFloat(num1) + parseFloat(num2);
                                           }
+
+                                          // $.ajax({
+                                          //     type: "POST",
+                                          //     url: "inbound_workorder_edit.aspx/getPartCustomer",
+                                          //     data: '{pcustid: "' + this.value + '" }',
+                                          //     contentType: "application/json; charset=utf-8",
+                                          //     dataType: "json",
+                                          //     success: function (rs) {
+                                          //         var SplitData = rs.d.split('|');
+                                          //         $('#inputWODetailSize').val(SplitData[1] + ' ' + SplitData[2] + ' ' + SplitData[3]);
+                                          //     }
+                                          // });
                                       </script>
 
                                       <div class="offset-3">&nbsp;

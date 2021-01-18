@@ -28,6 +28,7 @@ class OrderController extends Controller
 
     public function detailord($id)
     {
+
       return view('process.back')
       ->with("durables",Durable::find($id));
     }
@@ -37,6 +38,9 @@ class OrderController extends Controller
       $durable=Durable::find($id);
       $durable->use=$request->use;
       $durable->save();
+      $addStatus = DB::table('orderitems')
+                        ->where('item_id', $id)
+                        ->update(['item_status' => 1]);
       return redirect('/orders')->with('success','บันทึกจำนวนคืนเรียบร้อยแล้ว');
     }
 

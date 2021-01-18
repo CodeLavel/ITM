@@ -221,6 +221,7 @@ CREATE TABLE `orderitems` (
   `item_brand` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `item_gen` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `item_amount` int(11) DEFAULT NULL,
+  `item_status` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

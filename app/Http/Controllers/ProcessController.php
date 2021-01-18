@@ -144,6 +144,7 @@ class ProcessController extends Controller
                      'place'         => $place,
                      'date'         => $date,
     );
+            //print_r($cart);
             $json = null;
             //line ส่วนตัว : EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC
             //line กลุ่ม Codelavel : CBhrL0GWdt3mG8XgMoFQMkKWvMZ1lxxUvhEWtZYUENL
@@ -162,7 +163,6 @@ class ProcessController extends Controller
                     ."วันที่ส่งคืน : ".$params['date'],
                   );
                 
-                //try {
                     $ch = curl_init();
                 
                     curl_setopt($ch, CURLOPT_URL, $api_url);
@@ -179,9 +179,6 @@ class ProcessController extends Controller
                         throw new Exception(curl_error($ch), curl_errno($ch));
                 
                     $json = json_decode($res);
-
-
-
 
             Session::forget("cart");
             $order_info=$newOrder;

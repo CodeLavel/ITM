@@ -42,9 +42,16 @@
                         <th scope="row"><h4>{{$orderitem->item_gen}}</h4></th> -->
                         <th scope="row"><h4><br>{{$orderitem->item_amount}}</h4></th>
                       @if(auth::check())
+                        
                         <th scope="row"><br>
-                            <a href="/orders/detailord/{{$orderitem->item_id}}" class="btn btn-info"><i class="fas fa-edit"></i> รับคืน</a>
+                          @if($orderitem->item_status == '1')
+                            <a href="/orders/detailord/{{$orderitem->item_id}}" class="btn btn-info disabled"><i class="fas fa-edit"></i> รับคืน</a>
+                          @else
+                          <a href="/orders/detailord/{{$orderitem->item_id}}" class="btn btn-info"><i class="fas fa-edit"></i> รับคืน</a>
+                          @endif
                         </th>
+                      
+                        
                       @endif
                       </tr>
                     @endforeach

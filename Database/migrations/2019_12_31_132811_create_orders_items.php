@@ -23,6 +23,7 @@ class CreateOrdersItems extends Migration
             $table->text('item_brand')->nullable();
             $table->text('item_gen')->nullable();
             $table->integer('item_amount')->nullable();
+            $table->integer('item_status')->nullable();
             $table->timestamps();
         });
     }

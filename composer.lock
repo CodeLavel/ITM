@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af98747dac1f4898eaeafdaa976e234d",
+    "content-hash": "a51301386ce818b8c7ba6bf7829b8336",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -752,53 +752,6 @@
                 "source": "https://github.com/guzzle/psr7/tree/1.7.0"
             },
             "time": "2020-09-30T07:37:11+00:00"
-        },
-        {
-            "name": "ichtrojan/laravel-otp",
-            "version": "v1.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ichtrojan/laravel-otp.git",
-                "reference": "09a31156f26171069d4cd6ccd1691c8bb9b3dcdd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ichtrojan/laravel-otp/zipball/09a31156f26171069d4cd6ccd1691c8bb9b3dcdd",
-                "reference": "09a31156f26171069d4cd6ccd1691c8bb9b3dcdd",
-                "shasum": ""
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Ichtrojan\\Otp\\OtpServiceProvider"
-                    ],
-                    "aliases": {
-                        "Otp": "Ichtrojan\\Otp\\Otp"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Ichtrojan\\Otp\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Okoh",
-                    "email": "michael@okoh.co.uk"
-                }
-            ],
-            "description": "A simple package to generate and validate OTPs",
-            "support": {
-                "issues": "https://github.com/ichtrojan/laravel-otp/issues",
-                "source": "https://github.com/ichtrojan/laravel-otp/tree/v1.4"
-            },
-            "time": "2020-01-28T15:16:26+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
