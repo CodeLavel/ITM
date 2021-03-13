@@ -8,6 +8,8 @@ use App\Models\Durable;
 use App\Models\Category;
 use App\Models\Catagory;
 use App\Cart;
+use App\Order;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -51,6 +53,16 @@ class HomeController extends Controller
       return view("process.details")
       ->with("durable",Durable::find($id));
 
+    }
+
+    public function sentOtp(){
+
+        return view('process.createOTP');
+        // $otp = rand(1000,9999);
+        // Log::info('otp'.$otp);
+        // $logOtp = Order::where('userID', $data->userID)->update(['otp'=> $otp]);
+
+        // return response()->json($logOtp,200);
     }
 
     

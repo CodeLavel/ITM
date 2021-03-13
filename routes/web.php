@@ -43,7 +43,7 @@ Route::get('change-password', 'ChangePasswordController@index');
 Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
 
 //Otp ยังไม่เสร็จ
-Route::get('orders/otp','OrderController@Otp');
+Route::get('orders/otp','HomeController@sentOtp')->name('otp');
 
 
 
