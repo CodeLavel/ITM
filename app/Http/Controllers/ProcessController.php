@@ -36,7 +36,7 @@ class ProcessController extends Controller
 
     public function showCart(){
       $cart=Session::get('cart');
-
+      //print_r($cart);
       if($cart){
           return view('process.showCart',['cartItems'=>$cart]);
       }else{
@@ -80,7 +80,7 @@ class ProcessController extends Controller
         $status= '1';
         $borrow= '4';
         if($cart){
-            $date=date("d-m-Y"); //d-m-Y H:i:s
+            $date=date('Y-m-d H:i:s'); //d-m-Y H:i:s
             $newOrder=array("date"=>$date,
             "rdate"=>$rdate,
             "fname"=>$fname,
