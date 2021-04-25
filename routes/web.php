@@ -36,9 +36,16 @@ Route::post('/orders/addQuantityToInventory/{id}', 'OrderController@addQuantityT
 Route::put('confirm/edit/{id}','ConfirmController@update');
 Route::put('borrow/edit/{id}','BorrowController@update');
 Route::get('orders/search','OrderController@searchOrder');
+Route::get('orders/showorder','OrderController@showorder');
+Route::get('orders/showordermount','OrderController@showordermount');
 
 Route::get('change-password', 'ChangePasswordController@index');
 Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
+
+//Otp ยังไม่เสร็จ
+Route::get('orders/otp','HomeController@sentOtp')->name('otp');
+
+
 
 Route::middleware(['auth'])->group(function(){
 Route::group([

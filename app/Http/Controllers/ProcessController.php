@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Models\Category;
 use App\Models\Durable;
 use App\Cart;
@@ -68,6 +69,15 @@ class ProcessController extends Controller
           'phone'=>'required',
           'place'=>'required',
         ]);
+      
+
+      // $cart=Session::get('cart');
+      // print_r($cart);
+      // dd($cart);
+     
+      // return redirect()->route('otp');
+      
+    
 
       $cart=Session::get('cart');
         $rdate=$request->rdate;
@@ -92,8 +102,25 @@ class ProcessController extends Controller
             "status"=>"1",
             "borrow"=>"4"
             );
-            $create_Order=DB::table('orders')->insert($newOrder);
-            $order_id=DB::getPDO()->lastInsertId();
+            
+            // Session::put('variableName', $newOrder);
+            // $data = Session::get('variableName');
+            // //เก็บ session
+            // print_r($data['fname']);
+            // // dd($dataa);
+            
+            // $otp = rand(1000,9999);
+            // Log::info('otp =' . $otp);
+            // $create_Otp=DB::table('otp')->insert($newOrder);
+            
+            // return redirect('/orders/otp');
+
+            // if($otp == ""){
+              $create_Order=DB::table('orders')->insert($newOrder);
+              $order_id=DB::getPDO()->lastInsertId();
+            //}
+
+            
 
             foreach ($cart->items as $item) {
                 $item_id=$item['data']['id'];
@@ -113,6 +140,7 @@ class ProcessController extends Controller
           //        "item_gen"=>$item_gen,
                   "item_amount"=>$item_amount
                 );
+                
                 $create_orderItem=DB::table("orderitems")->insert($newOrderItem);
             }
 
@@ -130,6 +158,7 @@ class ProcessController extends Controller
                      'place'         => $place,
                      'date'         => $date,
     );
+            //print_r($cart);
             $json = null;
             //line ส่วนตัว : EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC
             //line กลุ่ม Codelavel : CBhrL0GWdt3mG8XgMoFQMkKWvMZ1lxxUvhEWtZYUENL
@@ -137,10 +166,17 @@ class ProcessController extends Controller
                     'Authorization: Bearer ' . 'EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC'
                 ];
                 $fields = array(
-                    'message' => $params['message']."\n"."ลำดับ : ".$params['order_id']."\n"."ชื่ออุปกรณ์ : ".$params['item_name']."\n"."ชื่อ-นามสกุล : ".$params['name'] ." ". $params['lname']."\n"."รหัสพนักงาน : ".$params['userID']."\n"."สังกัด : ".$params['address']."\n"."เบอร์โทร : ".$params['phone']."\n"."สถานที่นำไปใช้ : ".$params['place']."\n"."วันที่ส่งคืน : ".$params['date'],
+                    'message' => $params['message']."\n"
+                    ."ลำดับ : ".$params['order_id']."\n"
+                    ."ชื่ออุปกรณ์ : ".$params['item_name']."\n"
+                    ."ชื่อ-นามสกุล : ".$params['name'] ." ". $params['lname']."\n"
+                    ."รหัสพนักงาน : ".$params['userID']."\n"
+                    ."สังกัด : ".$params['address']."\n"
+                    ."เบอร์โทร : ".$params['phone']."\n"
+                    ."สถานที่นำไปใช้ : ".$params['place']."\n"
+                    ."วันที่ส่งคืน : ".$params['date'],
                   );
                 
-                //try {
                     $ch = curl_init();
                 
                     curl_setopt($ch, CURLOPT_URL, $api_url);
@@ -157,9 +193,6 @@ class ProcessController extends Controller
                         throw new Exception(curl_error($ch), curl_errno($ch));
                 
                     $json = json_decode($res);
-
-
-
 
             Session::forget("cart");
             $order_info=$newOrder;

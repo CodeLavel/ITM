@@ -94,16 +94,41 @@
                                 <a href="{{ url('durables') }}">ครุภัณฑ์</a>
                             </li>
                             <li>
+                                <a href="{{ url('orders') }}">รายการยืมครุภัณฑ์</a>
+                            </li>
+                            <li>
                                 <a href="{{ url('categories') }}">หมวดหมู่</a>
                             </li>
                             {{-- <li>
                                 <a href="{{ url('catagories') }}">สถานที่ครุภัณฑ์</a>
                             </li> --}}
-                            <li>
+                            {{-- <li>
                                 <a href="{{ url('users') }}">ข้อมูลพนักงาน</a>
-                            </li>
+                            </li> --}}
                         </ul>
+                       
                     </li>
+                <li>
+                    <a href="{{ url('users') }}">
+                        <i class="fas fa-address-book"></i>
+                        <span> ข้อมูลผู้ดูแลระบบ </span>
+                        {{-- <span class="menu-arrow"></span> --}}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('orders/showordermount') }}">
+                        <i class="fas fa-book-open"></i>
+                        <span> รายการยืมประจำเดือน </span>
+                        {{-- <span class="menu-arrow"></span> --}}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('orders/showorder') }}">
+                        <i class="fas fa-list"></i>
+                        <span> สถิติการยืมทั้งหมด </span>
+                        {{-- <span class="menu-arrow"></span> --}}
+                    </a>
+                </li>
                     @endif
 
                     {{-- <li>

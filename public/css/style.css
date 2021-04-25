@@ -23,7 +23,10 @@ body {
   color: #a0a9b1;
   font-family: 'Pridi', serif;
 }
-
+a.disabled {
+  pointer-events: none;
+  color: #ccc;
+}
 h1,
 h2,
 h3,

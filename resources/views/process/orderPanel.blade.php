@@ -80,19 +80,9 @@
                               @if ($order->status == '1')
                                     <a href="#" class="btn btn-warning text-white" data-toggle="modal" data-target="#myModal{{ $order->order_id }}">รออนุมัติ</a>
                                   @elseif ($order->status == '2')
-                                    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#myModal{{ $order->order_id }}">อนุมัติ</a>
+                                    <a href="#" class="btn btn-success disabled" data-toggle="modal" data-target="#myModal{{ $order->order_id }}">อนุมัติ</a>
                                   @elseif ($order->status == '3')
                                     <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ $order->order_id }}">ไม่อนุมัติ</a>
-                              @endif
-
-                                    @else
-
-                              @if ($order->status == '1')
-                                    <a class="text-warning" > <h5 class="text-warning"><i class="fas fa-spinner"></i> รออนุมัติ</h5></a>
-                                  @elseif ($order->status == '2')
-                                    <a class="text-success" > <h5 class="text-success"><i class="fas fa-check"></i> อนุมัติ</h5></a>
-                                  @elseif ($order->status == '3')
-                                    <a class="text-danger" > <h5 class="text-danger"><i class="fas fa-times"></i> ไม่อนุมัติ</h5></a>
                               @endif
 
                           @endif
@@ -105,7 +95,7 @@
                               @if ($order->borrow == '4')
                                     <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#myModal1{{ $order->order_id }}">อยู่ระหว่างยืม</a>
                                   @else ($order->borrow == '5')
-                                    <a href="#" class="btn btn-info" data-toggle="modal" data-target="#myModal1{{ $order->order_id }}">คืนแล้ว</a>
+                                    <a href="#" class="btn btn-info disabled" data-toggle="modal" data-target="#myModal1{{ $order->order_id }}">คืนแล้ว</a>
                               @endif
                           @endif
 
