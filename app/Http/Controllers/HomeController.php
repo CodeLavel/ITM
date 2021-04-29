@@ -58,9 +58,7 @@ class HomeController extends Controller
     public function sentOtp(){
 
         return view('process.createOTP');
-        // $otp = rand(1000,9999);
-        // Log::info('otp'.$otp);
-        // $logOtp = Order::where('userID', $data->userID)->update(['otp'=> $otp]);
+        
 
         // return response()->json($logOtp,200);
     }

@@ -23,20 +23,26 @@
 
 
         <div class="panel-body">
-
-
-            <form method="POST" action="{{ route('') }}" accept-charset="UTF-8" id="create_users_form" name="create_users_form" class="form-horizontal">
+            <?php $newOrderItems = Session::get('newOrderItem'); ?>
+            
+             
+            <form method="POST" action="{{route('otpconfirm')}}" accept-charset="UTF-8" id="create_users_form" name="create_users_form" class="form-horizontal">
             {{ csrf_field() }}
-            <center><input class="form-control col-sm-4" name="otp" type="text" id="otp" minlength="1" placeholder="กรอกรหัส OTP ..." required>
+            <center><label class="col-sm-4 control-label">รหัสออเดอร์</label>
+                <input class="form-control col-sm-2" name="order_id" type="text" id="order_id" value="{{$newOrderItems['order_id']}}" placeholder="กรอกรหัส OTP ..." disabled>
+                <input name="order_id" type="hidden" value="{{$newOrderItems['order_id']}}">
+            </center><br>
+            <center>
+                <label for="duID" class="col-sm-4 control-label">กรุณากรอกรหัสยืนยันตัวตน(OTP)</label>
+                <input class="form-control col-sm-4" name="otp" type="text" id="otp" minlength="4" placeholder="กรอกรหัส OTP ..." required>
                 <br>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input class="btn btn-primary" type="submit" value="บันทึก">
+                        <input class="btn btn-primary" type="submit" value="ยืนยันการยืม">
                     </div>
                 </div>
             </center>
             </form>
-
         </div>
     </div>
   </div> <!-- end card-box-->

@@ -43,8 +43,8 @@ Route::get('change-password', 'ChangePasswordController@index');
 Route::post('change-password', 'ChangePasswordController@store')->name('change.password');
 
 //Otp ยังไม่เสร็จ
-Route::get('orders/otp','HomeController@sentOtp')->name('otp');
-
+Route::get('/orders/otp','HomeController@sentOtp')->name('otp');
+Route::post('order/confirm','ProcessController@insertOrder')->name('otpconfirm');
 
 
 Route::middleware(['auth'])->group(function(){

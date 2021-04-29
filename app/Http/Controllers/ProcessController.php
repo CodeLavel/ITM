@@ -74,11 +74,9 @@ class ProcessController extends Controller
       // $cart=Session::get('cart');
       // print_r($cart);
       // dd($cart);
-     
-      // return redirect()->route('otp');
-      
-    
-
+      $otp = rand(1000,9999);
+      Log::info('otp ='." ".$otp);
+      // $create_Otp=DB::table('otp')->insert($newOrder);
       $cart=Session::get('cart');
         $rdate=$request->rdate;
         $fname=$request->fname;
@@ -92,6 +90,7 @@ class ProcessController extends Controller
         if($cart){
             $date=date('Y-m-d H:i:s'); //d-m-Y H:i:s
             $newOrder=array("date"=>$date,
+            "otp"=>$otp,
             "rdate"=>$rdate,
             "fname"=>$fname,
             "lname"=>$lname,
@@ -103,26 +102,18 @@ class ProcessController extends Controller
             "borrow"=>"4"
             );
             
-            // Session::put('variableName', $newOrder);
-            // $data = Session::get('variableName');
-            // //เก็บ session
+            Session::put('variableName', $newOrder);
+            $data = Session::get('variableName');
+            //เก็บ session
             // print_r($data['fname']);
-            // // dd($dataa);
+            // dd($dataa);
             
-            // $otp = rand(1000,9999);
-            // Log::info('otp =' . $otp);
-            // $create_Otp=DB::table('otp')->insert($newOrder);
             
-            // return redirect('/orders/otp');
 
-            // if($otp == ""){
-              $create_Order=DB::table('orders')->insert($newOrder);
+            $create_Order=DB::table('orders')->insert($newOrder);
               $order_id=DB::getPDO()->lastInsertId();
-            //}
 
-            
-
-            foreach ($cart->items as $item) {
+              foreach ($cart->items as $item) {
                 $item_id=$item['data']['id'];
                 $photo=$item['data']['photo'];
                 $item_name=$item['data']['du_name'];
@@ -143,69 +134,92 @@ class ProcessController extends Controller
                 
                 $create_orderItem=DB::table("orderitems")->insert($newOrderItem);
             }
-
-            $api_url = 'https://notify-api.line.me/api/notify';
             
-            $params = array(
-                    'message'        => 'รายการยืมครุภัณฑ์', //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
-                    'order_id'        => $order_id,
-                    'item_name'        => $item_name,
-                     'name'         => $fname,
-                     'lname'         => $lname,
-                     'userID'         => $userID,
-                     'address'         => $address,
-                     'phone'         => $phone,
-                     'place'         => $place,
-                     'date'         => $date,
-    );
-            //print_r($cart);
-            $json = null;
-            //line ส่วนตัว : EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC
-            //line กลุ่ม Codelavel : CBhrL0GWdt3mG8XgMoFQMkKWvMZ1lxxUvhEWtZYUENL
-                $headers = [
-                    'Authorization: Bearer ' . 'EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC'
-                ];
-                $fields = array(
-                    'message' => $params['message']."\n"
-                    ."ลำดับ : ".$params['order_id']."\n"
-                    ."ชื่ออุปกรณ์ : ".$params['item_name']."\n"
-                    ."ชื่อ-นามสกุล : ".$params['name'] ." ". $params['lname']."\n"
-                    ."รหัสพนักงาน : ".$params['userID']."\n"
-                    ."สังกัด : ".$params['address']."\n"
-                    ."เบอร์โทร : ".$params['phone']."\n"
-                    ."สถานที่นำไปใช้ : ".$params['place']."\n"
-                    ."วันที่ส่งคืน : ".$params['date'],
-                  );
-                
-                    $ch = curl_init();
-                
-                    curl_setopt($ch, CURLOPT_URL, $api_url);
-                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                    curl_setopt($ch, CURLOPT_POST, count($fields));
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                
-                    $res = curl_exec($ch);
-                    curl_close($ch);
-                
-                    if ($res == false)
-                        throw new Exception(curl_error($ch), curl_errno($ch));
-                
-                    $json = json_decode($res);
+            return redirect()->route('otp')->with( ['newOrderItem' => $newOrderItem] );
+            //return redirect('/orders/otp');
+        
 
-            Session::forget("cart");
-            $order_info=$newOrder;
-            $order_info["order_id"]=$order_id;
-            $request->session()->put("order_info",$order_info);
+  //           $api_url = 'https://notify-api.line.me/api/notify';
+            
+  //           $params = array(
+  //                   'message'        => 'รายการยืมครุภัณฑ์', //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
+  //                   'order_id'        => $order_id,
+  //                   'item_name'        => $item_name,
+  //                    'name'         => $fname,
+  //                    'lname'         => $lname,
+  //                    'userID'         => $userID,
+  //                    'address'         => $address,
+  //                    'phone'         => $phone,
+  //                    'place'         => $place,
+  //                    'date'         => $date,
+  //   );
+  //           //print_r($cart);
+  //           $json = null;
+  //           //line ส่วนตัว : EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC
+  //           //line กลุ่ม Codelavel : CBhrL0GWdt3mG8XgMoFQMkKWvMZ1lxxUvhEWtZYUENL
+  //               $headers = [
+  //                   'Authorization: Bearer ' . 'EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC'
+  //               ];
+  //               $fields = array(
+  //                   'message' => $params['message']."\n"
+  //                   ."ลำดับ : ".$params['order_id']."\n"
+  //                   ."ชื่ออุปกรณ์ : ".$params['item_name']."\n"
+  //                   ."ชื่อ-นามสกุล : ".$params['name'] ." ". $params['lname']."\n"
+  //                   ."รหัสพนักงาน : ".$params['userID']."\n"
+  //                   ."สังกัด : ".$params['address']."\n"
+  //                   ."เบอร์โทร : ".$params['phone']."\n"
+  //                   ."สถานที่นำไปใช้ : ".$params['place']."\n"
+  //                   ."วันที่ส่งคืน : ".$params['date'],
+  //                 );
+                
+  //                   $ch = curl_init();
+                
+  //                   curl_setopt($ch, CURLOPT_URL, $api_url);
+  //                   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  //                   curl_setopt($ch, CURLOPT_POST, count($fields));
+  //                   curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+  //                   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  //                   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                
+  //                   $res = curl_exec($ch);
+  //                   curl_close($ch);
+                
+  //                   if ($res == false)
+  //                       throw new Exception(curl_error($ch), curl_errno($ch));
+                
+  //                   $json = json_decode($res);
 
-            Session()->flash("success","บันทึกข้อมูลเรียบร้อยแล้ว โปรดรอการอนุมัติจากผู้ดูแล");
-            return redirect('/orders');
+  //           Session::forget("cart");
+  //           $order_info=$newOrder;
+  //           $order_info["order_id"]=$order_id;
+  //           $request->session()->put("order_info",$order_info);
 
-          }else{
-            return redirect('/durables');
+  //           Session()->flash("success","บันทึกข้อมูลเรียบร้อยแล้ว โปรดรอการอนุมัติจากผู้ดูแล");
+  //           return redirect('/orders');
+
+  //         }else{
+  //           return redirect('/durables');
 
         }
+    }
+
+    public function insertOrder(Request $request){
+
+      $order_ids=$request->order_id;
+      $otps=$request->otp;
+        $otptable = DB::table('orders')->where('order_id', $order_ids)->first();
+        
+        // print_r($otptable->otp);
+
+        // print_r($otps);
+        
+
+       if($otptable->otp == $otps){
+          return "ยืมอุปกรณ์สำเร็จ";
+       }else{
+        return redirect()->back();
+       }
+      
     }
 
 }

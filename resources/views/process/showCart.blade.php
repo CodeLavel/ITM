@@ -25,9 +25,10 @@
                                             <th><h4>รูปภาพ</h4></th>
                                             <th><h4>ชื่อครุภัณฑ์</h4></th>
                                             <th><h4>หมวดหมู่</h4></th>
-                                            <th><h4>ยี่ห้อ</h4></th>
-                                            <th><h4>รุ่น</h4></th> 
+                                            {{-- <th><h4>ยี่ห้อ</h4></th>
+                                            <th><h4>รุ่น</h4></th>  --}}
                                             <th><h4>จำนวน</h4></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -47,8 +48,8 @@
                                             <td><br><br><h4>{{$item['data']['du_name']}}</h4></td>
                                             <td><br><br><h4>{{$item['data']['category']['category_name']}}</h4></td>
                                             <td><br><br><h4>{{$item['quantity']}}</h4></td>
-                                            <td><br><br><h4>{{$item['data']['brand']}}</h4></td>
-                                            <td><br><br><h4>{{$item['data']['gen']}}</h4></td>
+                                            {{-- <td><br><br><h4>{{$item['data']['brand']}}</h4></td>
+                                            <td><br><br><h4>{{$item['data']['gen']}}</h4></td> --}}
 
                                             <td class="py-3"><br><br>
                                                 <a class="badge badge-danger" href="/durables/cart/deleteFormCart/{{$item['data']['id']}}" onclick="return confirm('คุณต้องการลบครุภัณฑ์นี้หรือไม่ ?')">
