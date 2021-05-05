@@ -206,19 +206,60 @@ class ProcessController extends Controller
     public function insertOrder(Request $request){
 
       $order_ids=$request->order_id;
+
+      $order = array(
+        'order_id' => $order_ids
+      );
+      
+      // print_r($order);
       $otps=$request->otp;
         $otptable = DB::table('orders')->where('order_id', $order_ids)->first();
-        
-        // print_r($otptable->otp);
-
-        // print_r($otps);
-        
 
        if($otptable->otp == $otps){
-          return "ยืมอุปกรณ์สำเร็จ";
+          
+        $api_url = 'https://notify-api.line.me/api/notify';
+            
+                  $params = array(
+                          'message'        => 'รายการยืมครุภัณฑ์', //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
+                          'order_id'        => $order_ids,
+                          'detail'        => 'ต้องการขอยืมครุภัณท์! (รอการอนุมัติ)',
+          );
+                  //print_r($cart);
+                  $json = null;
+                  //line ส่วนตัว : EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC
+                  //line กลุ่ม Codelavel : CBhrL0GWdt3mG8XgMoFQMkKWvMZ1lxxUvhEWtZYUENL
+                      $headers = [
+                          'Authorization: Bearer ' . 'EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC'
+                      ];
+                      $fields = array(
+                          'message' => $params['message']."\n"
+                          ."รายการที่ : ".$params['order_id']."\n"
+                          ."รายละเอียด : ".$params['detail']."\n"
+                        );
+                      
+                          $ch = curl_init();
+                      
+                          curl_setopt($ch, CURLOPT_URL, $api_url);
+                          curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                          curl_setopt($ch, CURLOPT_POST, count($fields));
+                          curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
+                          curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                          curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                      
+                          $res = curl_exec($ch);
+                          curl_close($ch);
+                      
+                          if ($res == false)
+                              throw new Exception(curl_error($ch), curl_errno($ch));
+                      
+                          $json = json_decode($res);
+
+          Session::forget("cart");
+          Session()->flash("success","บันทึกข้อมูลเรียบร้อยแล้ว โปรดรอการอนุมัติจากผู้ดูแล");
+          return redirect('/orders');
        }else{
-        return redirect()->back();
-       }
+          return redirect()->back()->with( ['newOrderItem' => $order] );
+      }
       
     }
 

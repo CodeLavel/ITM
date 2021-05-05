@@ -81,7 +81,7 @@
                                         <label for="amount" class="col-md-2 col-form-label text-md-right">จำนวน(ยืม) :</label>
                                           <div class="col-md-7">
                                             <input type="text" maxlength="3" name="quantity" value="" class="form-control" id="bor" onkeyup="Calculation()"
-                                            pattern="[0-9.]+" onkeypress="number(event)" placeholder="ระบุจำนวนยืม. . .">
+                                            pattern="[0-9.]+" onkeypress="number(event)" placeholder="ระบุจำนวนยืม. . ." required>
                                           </div>
                                       </div>
 
@@ -89,12 +89,18 @@
                                           function Calculation() {
                                               var use = document.getElementById('use').value;
                                               var bor = document.getElementById('bor').value;
-                                              document.getElementById('row').value = use - bor;
+                                              if(use - bor <= -1){
+                                                alert("ไม่สามารถยืมได้ครุภัณท์นี้ได้ เนื่องจากจำนวนไม่เพียงพอ! ตามที่ท่านต้องการ");
+                                                $("#btnSubmit").attr("disabled", true);
+                                              }else{
+                                                document.getElementById('row').value = use - bor;
+                                                $("#btnSubmit").attr("disabled", false);
+                                              }
                                           }
                                       </script>
 
                                       <div class="offset-2">
-                                          <button type="submit" class="btn btn-success">
+                                          <button type="submit" class="btn btn-success" id="btnSubmit">
                                               <i class="fas fa-save"></i> บันทึก
                                           </button>
 

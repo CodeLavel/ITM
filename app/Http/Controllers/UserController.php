@@ -10,6 +10,7 @@ use Exception;
 use Ichtrojan\Otp\Models\Otp as ModelsOtp;
 use Ichtrojan\Otp\Otp;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -92,9 +93,11 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        return "This is edit";
+        $users = User::find($id);
+
+        return view('users.edit',compact('users'));
     }
 
     /**
@@ -104,9 +107,28 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update($id,Request $request)
     {
-        return "This is update";
+        // $usernames = $request->username;
+        // $email1 = $request->email;
+
+        // $users = User::find($id);
+        // $users->update($usernames,$email1);
+
+        
+        // print_r($users);
+        $update = DB::table('users')->where('id', $id)->update(
+            ['username' => $request->username,
+            'email' => $request->email
+            ]
+        );
+        // $id->update($request->all());
+        if($update){
+            return redirect()->route('users.index')->with('success','อัพเดทข้อมูลสำเร็จ');
+        }else{
+            return "ไม่สำเร็จ";
+        }
+        
     }
 
     /**
