@@ -38,6 +38,8 @@ Route::put('borrow/edit/{id}','BorrowController@update');
 Route::get('orders/search','OrderController@searchOrder');
 Route::get('orders/showorder','OrderController@showorder');
 Route::get('orders/showordermount','OrderController@showordermount');
+Route::post('orders/showorderdate','OrderController@showorderdate')->name('showorderdate');
+// Route::get('/prnpriview','OrderController@prnpriview');
 
 Route::get('change-password', 'ChangePasswordController@index');
 Route::post('change-password', 'ChangePasswordController@store')->name('change.password');

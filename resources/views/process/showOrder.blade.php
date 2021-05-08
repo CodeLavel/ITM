@@ -12,7 +12,30 @@
                 <h2>รายการยืมครุภัณฑ์</h2>
 
                 <div class="table-responsive">
-
+                  <form  action="{{route('showorderdate')}}" method ="POST">
+                    @csrf
+                    <br>
+                    <div class="container">
+                        <div class="row">
+                            <div class="container-fluid">
+                                <div class="form-group row">
+                                    <label for="date" class="col-form-label">เริ่มวันที่ :</label>
+                                    <div class="col-sm-3">
+                                        <input type="date" class="form-control input-sm" id="fromDate" name="fromDate" required/>
+                                    </div>
+                                    <label for="date" class="col-form-label ">สิ้นสุดวันที่ :</label>
+                                    <div class="col-sm-3">
+                                        <input type="date" class="form-control input-sm" id="toDate" name="toDate" required/>
+                                    </div>
+                                    <div class="col-sm-2">
+                                      <button type="submit" class="btn" name="search" title="Search"><img src="https://img.icons8.com/android/24/000000/search.png"/></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </form>
                   <table class="table">
                     <thead class="thead-light">
                       <tr>

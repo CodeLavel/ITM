@@ -63,10 +63,28 @@ class OrderController extends Controller
 
     }
     public function showordermount(){
-      $ordersmount=DB::table('orders')->join('orderitems','orders.order_id','=','orderitems.order_id')->whereMonth('orders.date', Carbon::now()->format('m'))->paginate(100);
+      
+
+      // if($datelist != null){
+      //   
+      // }else{
+        $ordersmount=DB::table('orders')->join('orderitems','orders.order_id','=','orderitems.order_id')->whereMonth('orders.date', Carbon::now()->format('m'))->paginate(10);
+      //}
+
+      
       //print_r($ordersmount);
       return view("process.showOrderMount",["ordersmount"=>$ordersmount]);
     }
-    
+    public function showorderdate(Request $request){
+      $datelist = $request->input('fromDate');
+      $datelists = $request->input('toDate');
+      $ordersall=DB::table('orders')->join('orderitems','orders.order_id','=','orderitems.order_id')->where('orders.date','>=', $datelist)->where('orders.date','<=', $datelists)->paginate(10);
+      if($ordersall){
+        return view("process.showOrder",["ordersall"=>$ordersall]);
+      }else{
+        return redirect('orders/showordermount');
+      }
+      
+    }
 }
 //->join('orderitems','orders.order_id','=','orderitems.order_id')
