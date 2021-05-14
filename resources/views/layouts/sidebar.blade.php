@@ -102,6 +102,9 @@
                             <li>
                                 <a href="{{ url('orders/showorderlogs') }}">จำนวนการยืมครุภัณฑ์</a>
                             </li>
+                            <li>
+                                <a href="{{ url('line/token') }}">LineToken</a>
+                            </li>
                             {{-- <li>
                                 <a href="{{ url('catagories') }}">สถานที่ครุภัณฑ์</a>
                             </li> --}}

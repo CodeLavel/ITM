@@ -27,10 +27,11 @@ Route::get('/durables/search','ProcessController@searchDurable');
 Route::post('/durables/addQuantityToCart/{id}','ProcessController@addQuantityToCart');
 Route::get('/durables/checkout','ProcessController@checkout');
 Route::post('/durables/createOrder','ProcessController@createOrder');
+Route::get('/durables/addQuantityToCart/{id}','ProcessController@addOrdersall');
 
 Route::get('orders','OrderController@orderPanel');
 Route::get('orders/detail/{id}','OrderController@showOrderDetail');
-Route::get('/orders/detailord/{id}','OrderController@detailord');
+Route::post('/orders/detailord','OrderController@detailord')->name('returnorder');
 Route::post('/orders/addQuantityToInventory/{id}', 'OrderController@addQuantityToInventory');
 
 Route::put('confirm/edit/{id}','ConfirmController@update');
@@ -49,6 +50,7 @@ Route::post('change-password', 'ChangePasswordController@store')->name('change.p
 Route::get('/orders/otp','HomeController@sentOtp')->name('otp');
 Route::post('order/confirm','ProcessController@insertOrder')->name('otpconfirm');
 
+Route::get('line/token','HomeController@LineToken')->name('LineToken');
 
 Route::middleware(['auth'])->group(function(){
 Route::group([

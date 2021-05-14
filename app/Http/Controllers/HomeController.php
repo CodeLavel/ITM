@@ -10,6 +10,7 @@ use App\Models\Catagory;
 use App\Cart;
 use App\Order;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -62,6 +63,21 @@ class HomeController extends Controller
 
         // return response()->json($logOtp,200);
     }
+
+    public function LineToken(Request $request){
+
+      $dataid = $request->id;
+      $request->token;
+
+      DB::table('linetoken')
+                        ->where('id', $dataid)
+                        ->update(['token' => $request->token]);
+
+      return view('process.lineToken');
+      
+
+      // return response()->json($logOtp,200);
+  }
 
     
 

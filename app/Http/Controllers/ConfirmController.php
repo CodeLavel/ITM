@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 class ConfirmController extends Controller
 {
@@ -42,12 +43,14 @@ class ConfirmController extends Controller
                     'comment' => $orders->comment,
                 );
         }
+        $linetoken = DB::table('linetoken')->where('id', 1)->first();
+        
             $api_url = 'https://notify-api.line.me/api/notify';
             $json = null;
             //line ส่วนตัว : EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC
             //line กลุ่ม Codelavel : CBhrL0GWdt3mG8XgMoFQMkKWvMZ1lxxUvhEWtZYUENL
                 $headers = [
-                    'Authorization: Bearer ' . 'EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC'
+                    'Authorization: Bearer ' . $linetoken->token
                 ];
                 $fields = array(
                     'message' => "ลำดับ : ".$params['id']."\n"

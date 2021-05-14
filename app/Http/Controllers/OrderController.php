@@ -26,24 +26,34 @@ class OrderController extends Controller
       return view('process.orderDetails',["orderitems"=>$orderitems]);
     }
 
-    public function detailord($id)
+    public function detailord(Request $request)
     {
-       $data = DB::table('orderitems')->where('order_id', $id)->first();
+      $data1 = $request->order_id;
+      $data2 = $request->item_id;
+       $data = DB::table('orderitems')->where('order_id', $data1)->where('item_id', $data2)->first();
       //  print_r($data->item_id);
+
+      
+      print_r($data1);
+      // print_r($data2);
+
+       
+      
       return view('process.back')
-      ->with("durables",Durable::find($data->item_id))->with("Ordersall", $data);
+      ->with("durables",Durable::find($data2))->with("Ordersall", $data);
     }
 
     public function addQuantityToInventory(Request $request,$id)
     {
       // print_r($request->use);
-      echo "<pre>";
-      print_r($request->amount);
-      echo "</pre>";
+      // echo "<pre>";
+      // print_r($request->amount);
+      // echo "</pre>";
       // print_r($id);
-      $durable=Durable::find($id);
-      $durable->use=$request->amount;
-      $durable->save();
+      $durable=Durable::find($id)->increment('use',$request->amount);
+      // $durable->use=$request->amount;
+      // $durable->save();
+      // DB::table('durablelog')->where('item_id', $item_id)->update(['total' => DB::raw('total+1')]);
       $addStatus = DB::table('orderitems')
                         ->where('item_id', $id)
                         ->update(['item_status' => 1]);

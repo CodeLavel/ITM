@@ -52,7 +52,7 @@
                         <th scope="col"><h4>สถานที่นำไปใช้</h4></th>
                         <th scope="col"><h4>รายละเอียด</h4></th>
                         <th scope="col"><h4>สถานะ</h4></th>
-                        <th scope="col"><h4>ยืม/คืน</h4></th>
+                        {{-- <th scope="col"><h4>ยืม/คืน</h4></th> --}}
                         <th scope="col"><h4>หมายเหตุ</h4></th>
                       </tr>
                     </thead>
@@ -88,7 +88,7 @@
                           @endif
                         </td>
 
-                        <td>
+                        {{-- <td>
 
                        @if(auth::check())
                           @if ($order->status == '2')
@@ -109,7 +109,7 @@
                               @endif
                             @endif
                           @endif
-                        </td>
+                        </td> --}}
 
                         <td style='word-break:break-all' width="7%"><h5>{{$order->comment}}</h5></td>
                       </tr>
@@ -162,7 +162,7 @@
                         </div>
 
                         <!-- The Modal1 -->
-                          <div class="modal fade" id="myModal1{{ $order->order_id }}">
+                          {{-- <div class="modal fade" id="myModal1{{ $order->order_id }}">
                               <div class="modal-dialog modal-dialog py-5">
                               <div class="modal-content">
 
@@ -172,7 +172,7 @@
                                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                                   </div>
 
-                                  <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="/borrow/edit/{{$order->order_id}}">
+                                  {{-- <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="/borrow/edit/{{$order->order_id}}">
 
                                           {{ csrf_field() }}
                                           {{ method_field('PUT') }}
@@ -197,10 +197,10 @@
                                       <button type="submit" class="btn btn-success">บันทึก</button>
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
                                   </div>
-                                </form>
+                                </form> --}}
+                              {{-- </div>
                               </div>
-                              </div>
-                          </div>
+                          </div>  --}}
 
                       @endforeach
                     </tbody>

@@ -45,11 +45,22 @@
                         
                         <th scope="row"><br>
                           @if($orderitem->item_status == '1')
-                            <a href="/orders/detailord/{{$orderitem->order_id}}" class="btn btn-info disabled"><i class="fas fa-edit"></i> รับคืน</a>
-                          @else
-                          <a href="/orders/detailord/{{$orderitem->order_id}}" class="btn btn-info"><i class="fas fa-edit"></i> รับคืน</a>
-                          
+                            {{-- <a href="/orders/detailord/{{$orderitem->order_id}}" class="btn btn-info disabled"><i class="fas fa-edit"></i> คืนแล้ว</a> --}}
+                            <button type="submit" class="btn btn-danger disabled" title="คืนแล้ว">
+                              <span class="fas fa-edit" aria-hidden="true">คืนแล้ว</span>
+                          </button>
+                          @elseif($orderitem->status == '2')
+                          <form method="POST" action="{{route('returnorder')}}" accept-charset="UTF-8">
+                            <input name="order_id" value="{{$orderitem->order_id}}" type="hidden">
+                            <input name="item_id" value="{{$orderitem->item_id}}" type="hidden">
+                            {{ csrf_field() }}
+
+                               <button type="submit" class="btn btn-info" title="รับคืน">
+                                        <span class="fas fa-edit" aria-hidden="true">รับคืน</span>
+                                </button>
+                            </form>
                           @endif
+                          
                         </th>
                       
                         

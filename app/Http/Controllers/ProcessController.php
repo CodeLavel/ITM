@@ -229,7 +229,7 @@ class ProcessController extends Controller
       $otps=$request->otp;
         $otptable = DB::table('orders')->where('order_id', $order_ids)->first();
 
-
+      $linetoken = DB::table('linetoken')->where('id', 1)->first();
 
        if($otptable->otp == $otps){
           
@@ -247,7 +247,7 @@ class ProcessController extends Controller
                   //line ส่วนตัว : EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC
                   //line กลุ่ม Codelavel : CBhrL0GWdt3mG8XgMoFQMkKWvMZ1lxxUvhEWtZYUENL
                       $headers = [
-                          'Authorization: Bearer ' . 'EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC'
+                          'Authorization: Bearer ' . $linetoken->token
                       ];
                       $fields = array(
                           'message' => $params['message']."\n"
