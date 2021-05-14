@@ -37,6 +37,7 @@ Route::put('confirm/edit/{id}','ConfirmController@update');
 Route::put('borrow/edit/{id}','BorrowController@update');
 Route::get('orders/search','OrderController@searchOrder');
 Route::get('orders/showorder','OrderController@showorder');
+Route::get('orders/showorderlogs','OrderController@showorderlogs');
 Route::get('orders/showordermount','OrderController@showordermount');
 Route::post('orders/showorderdate','OrderController@showorderdate')->name('showorderdate');
 // Route::get('/prnpriview','OrderController@prnpriview');

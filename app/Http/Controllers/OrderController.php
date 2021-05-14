@@ -22,21 +22,27 @@ class OrderController extends Controller
       $orderitems=DB::table('orders')
       ->join('orderitems','orders.order_id','=','orderitems.order_id')
       ->where('orders.order_id',$id)->get();
-
+      // print_r($orderitems);
       return view('process.orderDetails',["orderitems"=>$orderitems]);
     }
 
     public function detailord($id)
     {
-
+       $data = DB::table('orderitems')->where('order_id', $id)->first();
+      //  print_r($data->item_id);
       return view('process.back')
-      ->with("durables",Durable::find($id));
+      ->with("durables",Durable::find($data->item_id))->with("Ordersall", $data);
     }
 
     public function addQuantityToInventory(Request $request,$id)
     {
+      // print_r($request->use);
+      echo "<pre>";
+      print_r($request->amount);
+      echo "</pre>";
+      // print_r($id);
       $durable=Durable::find($id);
-      $durable->use=$request->use;
+      $durable->use=$request->amount;
       $durable->save();
       $addStatus = DB::table('orderitems')
                         ->where('item_id', $id)
@@ -85,6 +91,13 @@ class OrderController extends Controller
         return redirect('orders/showordermount');
       }
       
+    }
+    public function showorderlogs(){
+
+      $orderlogs=DB::table('durablelog')->join('durables','durablelog.item_id','=','durables.id')->paginate(10);
+      return view("process.showOrderlogs",["orderlogs"=>$orderlogs]);
+        //return "Show All Order";
+
     }
 }
 //->join('orderitems','orders.order_id','=','orderitems.order_id')

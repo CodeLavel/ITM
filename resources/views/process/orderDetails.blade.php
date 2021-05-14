@@ -30,7 +30,7 @@
                     <tbody>
                       @foreach($orderitems as $orderitem)
                       <tr>
-                        <th scope="row"><h4><br>{{$i++}}</h4></th>
+                        <th scope="row"><h4><br>{{$orderitem->order_id}}</h4></th>
                     @if($orderitem->photo)
                         <th scope="row"><img height="90" width="100" src="{{ asset ('storage/' . $orderitem->photo) }}" alt=""/></th>
                       @else
@@ -45,9 +45,10 @@
                         
                         <th scope="row"><br>
                           @if($orderitem->item_status == '1')
-                            <a href="/orders/detailord/{{$orderitem->item_id}}" class="btn btn-info disabled"><i class="fas fa-edit"></i> รับคืน</a>
+                            <a href="/orders/detailord/{{$orderitem->order_id}}" class="btn btn-info disabled"><i class="fas fa-edit"></i> รับคืน</a>
                           @else
-                          <a href="/orders/detailord/{{$orderitem->item_id}}" class="btn btn-info"><i class="fas fa-edit"></i> รับคืน</a>
+                          <a href="/orders/detailord/{{$orderitem->order_id}}" class="btn btn-info"><i class="fas fa-edit"></i> รับคืน</a>
+                          
                           @endif
                         </th>
                       

@@ -61,15 +61,16 @@
                                     </div>
 
                                       <div class="form-group row">
-                                        <input type="hidden" name="_id" value="{{$durables->id}}" id="amount">
+                                        {{-- <input type="hidden" name="item_amount" value="{{$Ordersall->item_amount}}" id="amount"> --}}
                                         <label for="amount" class="col-md-3 col-form-label text-md-right">จำนวน(คืน) :</label>
                                           <div class="col-md-6">
-                                            <input type="text" name="" value="" class="form-control" id="num2" onkeyup="Calculation()"
-                                            pattern="[0-9.]+" onkeypress="number(event)" placeholder="ระบุจำนวนคืน. . ." required>
+                                            <input type="text" name="amount" value="{{$Ordersall->item_amount}}" onkeyup="Calculation()" class="form-control" id="sum" readonly>
+                                            {{-- <input type="text" name="amount" value="{{$Ordersall->item_amount}}" class="form-control" id="num2" onkeyup="Calculation()"
+                                            pattern="[0-9.]+" onkeypress="number(event)" placeholder="ระบุจำนวนคืน. . ." required> --}}
                                           </div>
                                       </div>
 
-                                      <script>
+                                      {{-- <script>
                                           function Calculation() {
                                               
                                               var num1 = document.getElementById('num1').value;
@@ -88,7 +89,7 @@
                                           //         $('#inputWODetailSize').val(SplitData[1] + ' ' + SplitData[2] + ' ' + SplitData[3]);
                                           //     }
                                           // });
-                                      </script>
+                                      </script> --}}
 
                                       <div class="offset-3">&nbsp;
                                           <button type="submit" class="btn btn-success">

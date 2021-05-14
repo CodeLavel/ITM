@@ -131,8 +131,22 @@ class ProcessController extends Controller
           //        "item_gen"=>$item_gen,
                   "item_amount"=>$item_amount
                 );
+                $newOrderItemLog=array(
+                  "item_id"=>$item_id,
+                  "item_name"=>$item_name,
+                  "item_category"=>$item_category,
+                  "item_amount"=>$item_amount
+                );
                 
                 $create_orderItem=DB::table("orderitems")->insert($newOrderItem);
+                $selectlog = DB::table('durablelog')->where('item_id', '=', $item_id)->first();
+                // print_r($selectlog->total);
+                if($selectlog == null){
+                  DB::table('durablelog')->insert($newOrderItemLog);
+                }else{
+                  DB::table('durablelog')->where('item_id', $item_id)->update(['total' => DB::raw('total+1')]);
+                }
+                
             }
             
             return redirect()->route('otp')->with( ['newOrderItem' => $newOrderItem] );
@@ -215,6 +229,8 @@ class ProcessController extends Controller
       $otps=$request->otp;
         $otptable = DB::table('orders')->where('order_id', $order_ids)->first();
 
+
+
        if($otptable->otp == $otps){
           
         $api_url = 'https://notify-api.line.me/api/notify';
@@ -222,6 +238,8 @@ class ProcessController extends Controller
                   $params = array(
                           'message'        => 'รายการยืมครุภัณฑ์', //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
                           'order_id'        => $order_ids,
+                          'names'         =>$otptable->fname." ".$otptable->lname,
+                          'address' =>$otptable->address,
                           'detail'        => 'ต้องการขอยืมครุภัณท์! (รอการอนุมัติ)',
           );
                   //print_r($cart);
@@ -234,6 +252,8 @@ class ProcessController extends Controller
                       $fields = array(
                           'message' => $params['message']."\n"
                           ."รายการที่ : ".$params['order_id']."\n"
+                          ."ชื่อ : ".$params['names']."\n"
+                          ."สังกัด : ".$params['address']."\n"
                           ."รายละเอียด : ".$params['detail']."\n"
                         );
                       

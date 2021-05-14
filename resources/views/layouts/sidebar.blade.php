@@ -99,6 +99,9 @@
                             <li>
                                 <a href="{{ url('categories') }}">หมวดหมู่</a>
                             </li>
+                            <li>
+                                <a href="{{ url('orders/showorderlogs') }}">จำนวนการยืมครุภัณฑ์</a>
+                            </li>
                             {{-- <li>
                                 <a href="{{ url('catagories') }}">สถานที่ครุภัณฑ์</a>
                             </li> --}}

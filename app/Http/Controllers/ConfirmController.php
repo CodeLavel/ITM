@@ -20,20 +20,25 @@ class ConfirmController extends Controller
         $orders->status = $request->input('status');
         $orders->comment = $request->input('comment');
         $orders->save();
+    
         if($orders->status == 2){
             
             $params = array(
                     'id' => $id,
-                    'message' => 'อนุมัติเรียบร้อย', //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
+                    'message' => 'ได้รับการอนุมัติยืมครุภัณฑ์แล้ว', //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
                     'status'  => $orders->status, 
+                    'names'  => $orders->fname." ".$orders->lname, 
+                    'address' => $orders->address,
                     'comment' => $orders->comment,
     );
         }else if($orders->status == 3){
             
             $params = array(
                     'id' => $id,
-                    'message' => 'ไม่อนุมัติ', //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
-                    'status'  => $orders->status, 
+                    'message' => 'ไม่อนุมัติการยืมครุภัณฑ์', //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
+                    'status'  => $orders->status,
+                    'names'  => $orders->fname." ".$orders->lname, 
+                    'address' => $orders->address, 
                     'comment' => $orders->comment,
                 );
         }
@@ -45,7 +50,11 @@ class ConfirmController extends Controller
                     'Authorization: Bearer ' . 'EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC'
                 ];
                 $fields = array(
-                    'message' => "ลำดับ : ".$params['id']."\n"."การอนุมัติ : ".$params['message']."\n"."ความคิดเห็น : ".$params['comment'],
+                    'message' => "ลำดับ : ".$params['id']."\n"
+                    ."ชื่อ : ".$params['names']."\n"
+                    ."สังกัด : ".$params['address']."\n"
+                    ."การอนุมัติ : ".$params['message']."\n"
+                    ."ความคิดเห็น : ".$params['comment'],
                   );
                 
                 //try {
