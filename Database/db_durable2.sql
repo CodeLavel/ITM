@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2021 at 06:53 PM
+-- Generation Time: May 15, 2021 at 07:31 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -130,25 +130,25 @@ CREATE TABLE `durables` (
 --
 
 INSERT INTO `durables` (`id`, `created_at`, `updated_at`, `photo`, `duID`, `category_id`, `catagory_id`, `du_name`, `brand`, `gen`, `amount`, `break`, `use`) VALUES
-(1, '2020-02-24 21:24:49', '2021-05-14 07:19:18', NULL, 'ITM-55-10-04-91-01-001', 6, NULL, 'จอพลาสม่า TV 50 นิ้ว ยี่ห้อ LG รุ่น 50PC5R', NULL, NULL, 1, NULL, 1),
-(3, '2020-02-24 21:29:03', '2021-05-14 07:38:06', NULL, 'ITM-55-10-04-91-01-001', 7, NULL, 'Network HD media player ยี่ห้อ Egreat', NULL, NULL, 1, NULL, 1),
-(4, '2020-02-24 21:29:26', '2021-05-14 07:53:34', NULL, 'ITM-55-10-04-91-01-001', 15, NULL, 'Flash drive ยี่ห้อ HP', NULL, NULL, 1, NULL, 1),
-(5, '2020-02-24 21:29:56', '2021-05-14 09:20:39', NULL, 'ITM-55-10-04-91-01-001', 6, NULL, 'จอทีวี Samsung 42 นิ้ว รุ่น PPM42M5HBXJXST', NULL, NULL, 2, NULL, 1),
-(6, '2020-02-24 21:31:10', '2021-04-28 22:40:34', NULL, 'ITM-55-10-04-91-01-001', 6, NULL, 'Cayin Digital Signage', NULL, NULL, 1, NULL, 5),
+(1, '2020-02-24 21:24:49', '2021-05-14 14:32:57', NULL, 'ITM-55-10-04-91-01-001', 6, NULL, 'จอพลาสม่า TV 50 นิ้ว ยี่ห้อ LG รุ่น 50PC5R', NULL, NULL, 1, NULL, 1),
+(3, '2020-02-24 21:29:03', '2021-05-14 10:22:47', NULL, 'ITM-55-10-04-91-01-001', 7, NULL, 'Network HD media player ยี่ห้อ Egreat', NULL, NULL, 1, NULL, 1),
+(4, '2020-02-24 21:29:26', '2021-05-14 10:42:56', NULL, 'ITM-55-10-04-91-01-001', 15, NULL, 'Flash drive ยี่ห้อ HP', NULL, NULL, 1, NULL, 1),
+(5, '2020-02-24 21:29:56', '2021-05-14 14:05:49', NULL, 'ITM-55-10-04-91-01-001', 6, NULL, 'จอทีวี Samsung 42 นิ้ว รุ่น PPM42M5HBXJXST', NULL, NULL, 2, NULL, 3),
+(6, '2020-02-24 21:31:10', '2021-05-14 21:25:01', NULL, 'ITM-55-10-04-91-01-001', 6, NULL, 'Cayin Digital Signage', NULL, NULL, 1, NULL, 14),
 (7, '2020-02-24 21:31:43', '2021-04-28 23:25:17', NULL, 'ITM-55-10-04-91-01-002', 8, NULL, 'Note Book COMPAQ 435', NULL, NULL, 1, NULL, 1),
 (8, '2020-02-24 21:33:38', '2021-04-29 00:02:16', NULL, 'ITM-55-10-04-91-01-002', 1, NULL, 'Power Amp Denon', NULL, NULL, 1, NULL, 1),
 (9, '2020-02-24 21:34:09', '2021-04-28 23:38:17', NULL, 'ITM-55-10-04-91-01-002', 9, NULL, 'Switch Cisco 4 port', NULL, NULL, 1, NULL, 1),
 (10, '2020-02-24 21:34:35', '2021-04-24 20:05:02', NULL, 'ITM-55-10-04-91-01-002', 10, NULL, 'VQA/UXQA Matrix Switcher Video', NULL, NULL, 1, NULL, 1),
-(11, '2020-02-24 21:35:03', '2021-05-14 09:29:12', NULL, 'ITM-55-10-04-91-01-002', 11, NULL, 'เครื่องอ่าน SD Card VMX', NULL, NULL, 1, NULL, 1),
+(11, '2020-02-24 21:35:03', '2021-05-14 14:46:13', NULL, 'ITM-55-10-04-91-01-002', 11, NULL, 'เครื่องอ่าน SD Card VMX', NULL, NULL, 1, NULL, 1),
 (12, '2020-02-24 21:35:56', '2021-04-30 08:23:56', NULL, 'ITM-55-10-04-91-01-002', 12, NULL, 'V WBOX-E122 iei Video', NULL, NULL, 1, NULL, 1),
 (13, '2020-02-24 21:36:27', '2021-05-03 19:22:48', NULL, 'ITM-55-10-04-91-01-002', 13, NULL, 'เครื่องฉายแสง Gobo', NULL, NULL, 2, NULL, 1),
 (14, '2020-02-24 21:36:45', '2020-02-24 21:36:45', NULL, 'ITM-55-10-04-91-01-002', 14, NULL, 'เลนส์ภาพควายBison', NULL, NULL, 2, NULL, 2),
-(15, '2020-02-24 21:37:00', '2020-02-24 23:21:49', NULL, 'ITM-55-10-04-91-01-002', 1, NULL, 'ลำโพง stereo', NULL, NULL, 5, NULL, 5),
+(15, '2020-02-24 21:37:00', '2021-05-14 21:25:17', NULL, 'ITM-55-10-04-91-01-002', 1, NULL, 'ลำโพง stereo', NULL, NULL, 5, NULL, 5),
 (16, '2020-02-24 21:37:26', '2020-02-25 00:57:42', NULL, 'ITM-55-10-04-91-01-002', 6, NULL, 'LCD TV Samsung 32 นิ้ว รุ่น LA32C650L1R', NULL, NULL, 5, NULL, 5),
 (17, '2020-02-24 21:38:27', '2020-02-24 21:38:27', NULL, 'ITM-55-10-04-91-01-002', 7, NULL, 'Network HD Media Player R-Series Egreat', NULL, NULL, 1, NULL, 1),
 (18, '2020-02-24 21:41:05', '2021-05-03 20:03:48', NULL, 'ITM-55-10-04-91-01-002', 15, NULL, 'Flash Drive Apacer', NULL, NULL, 1, NULL, 1),
 (19, '2020-02-24 21:41:34', '2020-02-24 21:41:34', NULL, 'ITM-55-10-04-91-01-002', 3, NULL, 'จอ COMPAQ', NULL, NULL, 1, NULL, 1),
-(21, '2020-02-24 21:43:30', '2020-02-24 23:14:37', NULL, 'ITM-55-10-04-91-01-002', 2, NULL, 'คอมพิวเตอร์ HP', NULL, NULL, 5, NULL, 5),
+(21, '2020-02-24 21:43:30', '2021-05-14 21:25:13', NULL, 'ITM-55-10-04-91-01-002', 2, NULL, 'คอมพิวเตอร์ HP', NULL, NULL, 5, NULL, 5),
 (22, '2020-02-24 21:43:50', '2021-05-03 19:21:21', NULL, 'ITM-55-10-04-91-01-002', 16, NULL, 'กล้อง Web Cam', NULL, NULL, 1, NULL, 1),
 (23, '2020-02-24 21:44:09', '2020-02-24 23:00:37', NULL, 'ITM-55-10-04-91-01-002', 17, NULL, 'touch switch', NULL, NULL, 8, NULL, 8),
 (25, '2020-02-24 23:03:28', '2021-05-03 19:29:50', NULL, 'ITM-55-10-04-91-01-002', 18, NULL, 'Senser', NULL, NULL, 1, NULL, 1),
@@ -193,6 +193,24 @@ INSERT INTO `durables` (`id`, `created_at`, `updated_at`, `photo`, `duID`, `cate
 (69, '2020-02-25 01:11:00', '2020-02-25 01:11:00', NULL, 'ITM-55-10-04-91-01-003', 1, NULL, 'ชุดลำโพง อากาศและน้ำ', NULL, NULL, 1, NULL, 1),
 (70, '2020-02-25 01:11:49', '2020-02-25 01:11:49', NULL, 'ITM-55-10-04-91-01-003', 23, NULL, 'Exchange line telephone', NULL, NULL, 5, NULL, 5),
 (71, '2020-02-25 01:12:15', '2020-02-25 01:12:15', NULL, 'ITM-55-10-04-91-01-003', 23, NULL, 'โทรศัพท์', NULL, NULL, 1, NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `linetoken`
+--
+
+CREATE TABLE `linetoken` (
+  `id` int(11) NOT NULL,
+  `token` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `linetoken`
+--
+
+INSERT INTO `linetoken` (`id`, `token`) VALUES
+(1, 'EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC');
 
 -- --------------------------------------------------------
 
@@ -333,6 +351,12 @@ ALTER TABLE `durables`
   ADD KEY `durables_catagory_id_index` (`catagory_id`);
 
 --
+-- Indexes for table `linetoken`
+--
+ALTER TABLE `linetoken`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -384,13 +408,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `durablelog`
 --
 ALTER TABLE `durablelog`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `durables`
 --
 ALTER TABLE `durables`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+
+--
+-- AUTO_INCREMENT for table `linetoken`
+--
+ALTER TABLE `linetoken`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -402,13 +432,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orderitems`
 --
 ALTER TABLE `orderitems`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `users`

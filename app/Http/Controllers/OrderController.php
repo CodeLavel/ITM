@@ -104,7 +104,7 @@ class OrderController extends Controller
     }
     public function showorderlogs(){
 
-      $orderlogs=DB::table('durablelog')->join('durables','durablelog.item_id','=','durables.id')->paginate(10);
+      $orderlogs=DB::table('durablelog')->join('durables','durablelog.item_id','=','durables.id')->orderBy('total', 'desc')->paginate(10);
       return view("process.showOrderlogs",["orderlogs"=>$orderlogs]);
         //return "Show All Order";
 

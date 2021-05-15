@@ -12,30 +12,6 @@
                 <h2>รายการยืมครุภัณฑ์</h2>
 
                 <div class="table-responsive">
-                  {{-- <form  action="{{route('showorderdate')}}" method ="POST">
-                    @csrf
-                    <br>
-                    <div class="container">
-                        <div class="row">
-                            <div class="container-fluid">
-                                <div class="form-group row">
-                                    <label for="date" class="col-form-label">เริ่มวันที่ :</label>
-                                    <div class="col-sm-3">
-                                        <input type="date" class="form-control input-sm" id="fromDate" name="fromDate" required/>
-                                    </div>
-                                    <label for="date" class="col-form-label ">สิ้นสุดวันที่ :</label>
-                                    <div class="col-sm-3">
-                                        <input type="date" class="form-control input-sm" id="toDate" name="toDate" required/>
-                                    </div>
-                                    <div class="col-sm-2">
-                                      <button type="submit" class="btn" name="search" title="Search"><img src="https://img.icons8.com/android/24/000000/search.png"/></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                </form> --}}
                   <table class="table">
                     <thead class="thead-light">
                       <tr>
@@ -43,7 +19,7 @@
                         <th scope="col"><h4>รหัสครุภัณฑ์</h4></th>
                         <th scope="col"><h4>ชื่อครุภัณฑ์</h4></th>
                         <th scope="col"><h4>หมวดหมู่</h4></th>
-                        <th scope="col"><h4>จำนวนที่ถูกยืม/ครั้ง</h4></th>
+                        <th scope="col"><center><h4>จำนวนที่ถูกยืม/ครั้ง</h4></center></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -57,7 +33,7 @@
                         <td style='word-break:break-all'><h5>{{$logs->duID}}</h5></td>
                         <td style='word-break:break-all'><h5>{{$logs->item_name}}</h5></td>
                         <td style='word-break:break-all'><h5>{{$logs->item_category}}</h5></td>
-                        <td style='word-break:break-all'><h5>{{$logs->total}}</h5></td>
+                        <td style='word-break:break-all'><center><h5>{{$logs->total}}/ครั้ง</h5></center></td>
                         {{-- <td style='word-break:break-all' width="8%">
                           <a href="/orders/detail/{{$order->order_id}}" class="btn btn-primary">รายละเอียด</a>
                         </td>     --}}
