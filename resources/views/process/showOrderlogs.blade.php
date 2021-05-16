@@ -10,7 +10,7 @@
               <div class="card-body">
 
                 <h2>รายการยืมครุภัณฑ์</h2>
-
+                <button class="btn btn-danger" style="float:right; margin-bottom: 20px;" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
                 <div class="table-responsive">
                   <table class="table">
                     <thead class="thead-light">
