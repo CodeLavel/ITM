@@ -50,7 +50,8 @@ Route::post('change-password', 'ChangePasswordController@store')->name('change.p
 Route::get('/orders/otp','HomeController@sentOtp')->name('otp');
 Route::post('order/confirm','ProcessController@insertOrder')->name('otpconfirm');
 
-Route::get('line/token','HomeController@LineToken')->name('LineToken');
+Route::get('line/sentLine','HomeController@sentLine')->name('sentLine');
+Route::post('line/token','HomeController@LineToken')->name('LineToken');
 
 Route::middleware(['auth'])->group(function(){
 Route::group([

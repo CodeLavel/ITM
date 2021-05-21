@@ -56,9 +56,9 @@ class HomeController extends Controller
 
     }
 
-    public function sentOtp(){
+    public function sentLine(){
 
-        return view('process.createOTP');
+      return view('process.lineToken');
         
 
         // return response()->json($logOtp,200);
