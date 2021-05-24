@@ -21,7 +21,11 @@ class ConfirmController extends Controller
         $orders->status = $request->input('status');
         $orders->comment = $request->input('comment');
         $orders->save();
-    
+        
+        DB::table('orderitems')
+                        ->where('order_id', $id)
+                        ->update(['success' => 1]);
+
         if($orders->status == 2){
             
             $params = array(

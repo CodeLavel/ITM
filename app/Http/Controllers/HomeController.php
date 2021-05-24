@@ -78,7 +78,9 @@ class HomeController extends Controller
 
       // return response()->json($logOtp,200);
   }
-
+    public function sentOtp(){
+      
+      return view('process.createOTP');
     
-
+  }
 }

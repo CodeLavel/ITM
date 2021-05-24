@@ -232,7 +232,9 @@ class ProcessController extends Controller
       $linetoken = DB::table('linetoken')->where('id', 1)->first();
 
        if($otptable->otp == $otps){
-          
+          DB::table('orders')
+                        ->where('order_id', $order_ids)
+                        ->update(['otp_status' => 1]);
         $api_url = 'https://notify-api.line.me/api/notify';
             
                   $params = array(

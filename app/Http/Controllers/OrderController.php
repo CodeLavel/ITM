@@ -13,7 +13,7 @@ class OrderController extends Controller
 {
     public function orderPanel()
     {
-      $orders=DB::table('orders')->orderByDesc('order_id')->paginate(10);
+      $orders=DB::table('orders')->where('otp_status', 1)->orderByDesc('order_id')->paginate(10);
       return view('process.orderPanel',["orders"=>$orders]);
     }
 
@@ -73,7 +73,7 @@ class OrderController extends Controller
     // }
     public function showorder(){
 
-      $ordersall=DB::table('orders')->join('orderitems','orders.order_id','=','orderitems.order_id')->paginate(10);
+      $ordersall=DB::table('orders')->join('orderitems','orders.order_id','=','orderitems.order_id')->where('success' , 1)->paginate(10);
       return view("process.showOrder",["ordersall"=>$ordersall]);
         //return "Show All Order";
 
@@ -84,7 +84,7 @@ class OrderController extends Controller
       // if($datelist != null){
       //   
       // }else{
-        $ordersmount=DB::table('orders')->join('orderitems','orders.order_id','=','orderitems.order_id')->whereMonth('orders.date', Carbon::now()->format('m'))->paginate(10);
+        $ordersmount=DB::table('orders')->join('orderitems','orders.order_id','=','orderitems.order_id')->where('success' , 1)->whereMonth('orders.date', Carbon::now()->format('m'))->paginate(10);
       //}
 
       
@@ -94,7 +94,7 @@ class OrderController extends Controller
     public function showorderdate(Request $request){
       $datelist = $request->input('fromDate');
       $datelists = $request->input('toDate');
-      $ordersall=DB::table('orders')->join('orderitems','orders.order_id','=','orderitems.order_id')->where('orders.date','>=', $datelist)->where('orders.date','<=', $datelists)->paginate(10);
+      $ordersall=DB::table('orders')->join('orderitems','orders.order_id','=','orderitems.order_id')->where('orders.date','>=', $datelist)->where('orders.date','<=', $datelists)->where('success' , 1)->paginate(10);
       if($ordersall){
         return view("process.showOrder",["ordersall"=>$ordersall]);
       }else{
