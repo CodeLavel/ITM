@@ -8,6 +8,9 @@ use App\Order;
 use App\Orderitem;
 use App\Models\Durable;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\App;
+use Elibyy\TCPDF\Facades\TCPDF as PDF;
+use Illuminate\Support\Facades\View as View;
 
 class OrderController extends Controller
 {
@@ -109,5 +112,33 @@ class OrderController extends Controller
         //return "Show All Order";
 
     }
+
+   public function pdf()
+    {
+      $logs = DB::table('orders')->join('orderitems','orders.order_id','=','orderitems.order_id')->where('success' , 1)->whereMonth('orders.date', Carbon::now()->format('m'))->paginate(9999);
+      $view=view("process.pdf",["logs"=>$logs]);
+      $html=$view->render();
+      $pdf = new PDF();
+      $pdf::SetTitle('รายการยืมครุภัณฑ์ประจำเดือน');
+      $pdf::AddPage();
+      $pdf::SetFont('freeserif');
+      $pdf::WriteHTML($html,true,false,true,false);
+      $pdf::Output('report.pdf');
+    }
+    public function pdf2()
+    {
+      $logs2 = DB::table('durablelog')->join('durables','durablelog.item_id','=','durables.id')->orderBy('total', 'desc')->paginate(9999);
+      $view=view("process.pdf2",["logs2"=>$logs2]);
+      $html=$view->render();
+      $pdf = new PDF();
+      $pdf::SetTitle('รายการยืมครุภัณฑ์ประจำเดือน');
+      $pdf::AddPage();
+      $pdf::SetFont('freeserif');
+      $pdf::WriteHTML($html,true,false,true,false);
+      $pdf::Output('report.pdf');
+    }
+
+
+
 }
 //->join('orderitems','orders.order_id','=','orderitems.order_id')

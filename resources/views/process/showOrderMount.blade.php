@@ -10,7 +10,7 @@
               <div class="card-body">
 
                 <h2>รายการยืมประจำเดือน</h2>
-                <button class="btn btn-danger" style="float:right; margin-bottom: 20px;" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+              <a href="{{URL('orders/pdf')}}" class="btn btn-danger" style="float:right; margin-bottom: 20px;"><i class="fa fa-print"> พิมพ์รายงาน</i></a>
                 <div class="table-responsive">
                   <table class="table">
                     <thead class="thead-light">
