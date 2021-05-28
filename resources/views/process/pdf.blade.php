@@ -66,7 +66,9 @@
     <h4>เทคโนธานี ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</h4>
   </div>
   <h4>รายการยืมครุภัณฑ์ประจำเดือน</h4>
+  <p>พิมพ์วันที่ {{ $day }} เดือน {{ $month }} พ.ศ. {{ $year }}</p>
   <div class="table-responsive">
+      
     
     <table class="table" style="width:100%">
       <thead class="thead-light">

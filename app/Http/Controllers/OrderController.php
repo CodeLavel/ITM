@@ -115,8 +115,27 @@ class OrderController extends Controller
 
    public function pdf()
     {
+      $day = Carbon::now()->format('d');
+      $m = Carbon::now()->format('m');
+      $thai_months = [
+        '01' => 'มกราคม',
+        '02' => 'กุมภาพันธ์',
+        '03' => 'มีนาคม',
+        '04' => 'เมษายน',
+        '05' => 'พฤษภาคม',
+        '06' => 'มิถุนายน',
+        '07' => 'กรกฎาคม',
+        '08' => 'สิงหาคม',
+        '09' => 'กันยายน',
+        '10' => 'ตุลาคม',
+        '11' => 'พฤศจิกายน',
+        '12' => 'ธันวาคม',
+    ];
+    $month = $thai_months[$m];
+      $y = Carbon::now()->format('Y');
+      $year = $y + 543;
       $logs = DB::table('orders')->join('orderitems','orders.order_id','=','orderitems.order_id')->where('success' , 1)->whereMonth('orders.date', Carbon::now()->format('m'))->paginate(9999);
-      $view=view("process.pdf",["logs"=>$logs]);
+      $view=view("process.pdf",["logs"=>$logs],compact('day','month','year'));
       $html=$view->render();
       $pdf = new PDF();
       $pdf::SetTitle('รายการยืมครุภัณฑ์ประจำเดือน');
@@ -127,8 +146,27 @@ class OrderController extends Controller
     }
     public function pdf2()
     {
+      $day = Carbon::now()->format('d');
+      $m = Carbon::now()->format('m');
+      $thai_months = [
+        '01' => 'มกราคม',
+        '02' => 'กุมภาพันธ์',
+        '03' => 'มีนาคม',
+        '04' => 'เมษายน',
+        '05' => 'พฤษภาคม',
+        '06' => 'มิถุนายน',
+        '07' => 'กรกฎาคม',
+        '08' => 'สิงหาคม',
+        '09' => 'กันยายน',
+        '10' => 'ตุลาคม',
+        '11' => 'พฤศจิกายน',
+        '12' => 'ธันวาคม',
+    ];
+    $month = $thai_months[$m];
+      $y = Carbon::now()->format('Y');
+      $year = $y + 543;
       $logs2 = DB::table('durablelog')->join('durables','durablelog.item_id','=','durables.id')->orderBy('total', 'desc')->paginate(9999);
-      $view=view("process.pdf2",["logs2"=>$logs2]);
+      $view=view("process.pdf2",["logs2"=>$logs2],compact('day','month','year'));
       $html=$view->render();
       $pdf = new PDF();
       $pdf::SetTitle('รายการยืมครุภัณฑ์ประจำเดือน');
