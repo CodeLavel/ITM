@@ -11,6 +11,8 @@ use App\Models\Durable;
 use App\Cart;
 use Exception;
 use Illuminate\Support\Facades\App;
+use Nexmo\Laravel\Facade\Nexmo;
+use Illuminate\Support\Str;
 
 
 class ProcessController extends Controller
@@ -76,8 +78,7 @@ class ProcessController extends Controller
       // $cart=Session::get('cart');
       // print_r($cart);
       // dd($cart);
-      $otp = rand(1000,9999);
-      Log::info('otp ='." ".$otp);
+     
       // $create_Otp=DB::table('otp')->insert($newOrder);
       $cart=Session::get('cart');
         $rdate=$request->rdate;
@@ -89,6 +90,15 @@ class ProcessController extends Controller
         $place=$request->place;
         $status= '1';
         $borrow= '4';
+        
+        $numberphone = Str::substr($phone, 1);
+        $otp = rand(1000,9999);
+            Nexmo::message()->send([
+              'to' => '66'.$numberphone,
+              'from' => '66901837418',
+              'text' => 'OTP : '.$otp.' ',
+          ]);
+          Log::info('otp ='." ".$otp);
         if($cart){
             $date=date('Y-m-d H:i:s'); //d-m-Y H:i:s
             $newOrder=array("date"=>$date,
@@ -103,6 +113,7 @@ class ProcessController extends Controller
             "status"=>"1",
             "borrow"=>"4"
             );
+            
             
             Session::put('variableName', $newOrder);
             $data = Session::get('variableName');
