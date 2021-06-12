@@ -73,7 +73,7 @@
     <h4>พิพิธภัณฑ์เทคโนโลยีสารสนเทศ</h4>
     <h4>เทคโนธานี ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</h4>
     <br>
-    <h4 class="title-list">จำนวนการยืมครุภัณฑ์</h4>
+    <h4 class="title-list">รายการยืมครุภัณฑ์คืนแล้ว</h4>
   </div>
   {{-- <div class="title-page"> --}}
   {{-- </div> --}}
@@ -83,11 +83,12 @@
       <thead class="thead-light">
         {{-- <colgroup span= "1" width="10"></colgroup> --}}
         <tr>
-                        <th scope="col" style="width: 50px"><h4>ลำดับ</h4></th>
-                        <th scope="col" ><h4>รหัสครุภัณฑ์</h4></th>
-                        <th scope="col" style="width: 150px"><h4>ชื่อครุภัณฑ์</h4></th>
-                        <th scope="col"><h4>หมวดหมู่</h4></th>
-                        <th scope="col"><center><h4>จำนวนที่ถูกยืม/ครั้ง</h4></center></th>
+                        <th scope="col"><h4>ลำดับ</h4></th>
+                        <th scope="col" ><h4>รายการ</h4></th>
+                        <th scope="col"><h4>วันที่ยืม</h4></th>
+                        <th scope="col"><h4>วันที่คืน</h4></th>
+                        <th scope="col"><center><h4>ชื่อ-นามสกุล</h4></center></th>
+                        <th scope="col"><center><h4>ชื่อครุภัณฑ์</h4></center></th>
         </tr>
       </thead>
       <tbody>
@@ -95,13 +96,14 @@
           $i = 1;
         @endphp
 
-        @foreach($logs2 as $key => $order)
+        @foreach($logs3 as $key => $order)
         <tr>
-          <td style="width: 50px"><h5>{{$key + 1}}</h5></td>
-          <td><h5>{{$order->duID}}</h5></td>
-          <td style="width: 150px"><h5>{{$order->item_name}}</h5></td>
-          <td><h5>{{$order->item_category}}</h5></td>
-          <td style="text-align: center"><h5>{{$order->total}}</h5></td>
+          <td><h5>{{$key + 1}}</h5></td>
+          <td><h5>{{$order->order_id}}</h5></td>
+          <td><h5>{{$order->date}}</h5></td>
+          <td><h5>{{$order->rdate}}</h5></td>
+          <td style="text-align: center"><h5>{{$order->fname}} {{$order->lname}}</h5></td>
+          <td style="text-align: center"><h5>{{$order->item_name}}</h5></td>
 
         </tr>
         @endforeach

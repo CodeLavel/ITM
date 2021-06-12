@@ -97,10 +97,13 @@
                                 <a href="{{ url('orders') }}">รายการยืมครุภัณฑ์</a>
                             </li>
                             <li>
-                                <a href="{{ url('categories') }}">หมวดหมู่</a>
+                                <a href="#">ครุภัณฑ์คืนแล้ว</a>
                             </li>
                             <li>
-                                <a href="{{ url('orders/showorderlogs') }}">จำนวนการยืมครุภัณฑ์</a>
+                                <a href="#">ครุภัณฑ์ยังไม่คืน</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('categories') }}">หมวดหมู่</a>
                             </li>
                             {{-- <li>
                                 <a href="{{ url('line/sentLine') }}">LineToken</a>
@@ -112,26 +115,52 @@
                                 <a href="{{ url('users') }}">ข้อมูลพนักงาน</a>
                             </li> --}}
                         </ul>
-                       
                     </li>
-                <li>
-                    <a href="{{ url('users') }}">
-                        <i class="fas fa-address-book"></i>
-                        <span> ข้อมูลผู้ดูแลระบบ </span>
-                        {{-- <span class="menu-arrow"></span> --}}
-                    </a>
-                </li>
-                <li>
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fas fa-book-open"></i>
+                            <span> รายงาน </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+
+                            <li>
+                                <a href="{{ url('orders/showorderlogs') }}">จำนวนการยืมครุภัณฑ์</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('orders/showordermount') }}">รายการยืมประจำเดือน</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('orders/showorder') }}">สถิติการยืมทั้งหมด</a>
+                            </li>
+                            <li>
+                                <a href="{{URL('orders/pdf3')}}">รายการยืมครุภัณฑ์คืนแล้ว</a>
+                            </li>
+                            <li>
+                                <a href="{{URL('orders/pdf4')}}">รายการยืมครุภัณฑ์ยังไม่คืน</a>
+                            </li>
+                            
+                        </ul>
+                    </li>
+                {{-- <li>
                     <a href="{{ url('orders/showordermount') }}">
                         <i class="fas fa-book-open"></i>
                         <span> รายการยืมประจำเดือน </span>
-                        {{-- <span class="menu-arrow"></span> --}}
+                       
                     </a>
+                    
                 </li>
                 <li>
                     <a href="{{ url('orders/showorder') }}">
                         <i class="fas fa-list"></i>
                         <span> สถิติการยืมทั้งหมด </span>
+                       
+                    </a>
+                </li> --}}
+                <li>
+                    <a href="{{ url('users') }}">
+                        <i class="fas fa-address-book"></i>
+                        <span> ข้อมูลผู้ดูแลระบบ </span>
                         {{-- <span class="menu-arrow"></span> --}}
                     </a>
                 </li>

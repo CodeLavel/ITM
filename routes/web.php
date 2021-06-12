@@ -43,6 +43,8 @@ Route::get('orders/showordermount','OrderController@showordermount');
 Route::post('orders/showorderdate','OrderController@showorderdate')->name('showorderdate');
 Route::get('orders/pdf','OrderController@pdf');
 Route::get('orders/pdf2','OrderController@pdf2');
+Route::get('orders/pdf3','OrderController@pdf3');
+Route::get('orders/pdf4','OrderController@pdf4');
 // Route::get('/prnpriview','OrderController@prnpriview');
 
 Route::get('change-password', 'ChangePasswordController@index');

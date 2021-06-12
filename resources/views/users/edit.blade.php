@@ -41,10 +41,22 @@
                     <label>ชื่อผู้ใช้งานระบบ :</label>
                     <input class="form-control" name="username" type="text" id="username" value="{{ old('username', optional($users)->username) }}" minlength="1" placeholder="กรอกชื่อหมวดหมู่ครุภัณฑ์..." required>
                     {!! $errors->first('username', '<p class="help-block">:message</p>') !!} <br>
+                    <label>ชื่อ-นามสกุล :</label>
+                    <input class="form-control" name="names" type="text" id="names" value="{{ old('names', optional($users)->names) }}" minlength="1" placeholder="กรอกชื่อ-นามสกุล..." required>
+                    {!! $errors->first('names', '<p class="help-block">:message</p>') !!} 
+                    <br>
                     <label>อีเมล์ :</label>
                     <input class="form-control" name="email" type="text" id="email" value="{{ old('email', optional($users)->email) }}" minlength="1" placeholder="email..." required>
                     {!! $errors->first('email', '<p class="help-block">:message</p>') !!} 
                     <br>
+                    <label>ตำแหน่ง <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></label>
+                    <div class="col-md-8">
+                        <select class="form-control" id="position" name="position">
+                            <option value="">เลือกตำแหน่ง</option>
+                            <option value="academician">นักวิชาการ</option>
+                        </select>
+                {!! $errors->first('catagory_id', '<p class="help-block">:message</p>') !!}
+                </div>
                 </div>
             </div>
                 <div class="form-group">

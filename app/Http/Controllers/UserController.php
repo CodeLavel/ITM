@@ -50,11 +50,13 @@ class UserController extends Controller
             //print_r($request);
             $users_add = array(
                 'username' => $request->username,
+                'names' => $request->names,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'position' => $request->position,
             );
             
-
+            
             User::create($users_add);
 
 

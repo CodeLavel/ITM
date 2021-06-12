@@ -45,6 +45,10 @@
       height: 60px;
     }
     .title-page{
+      text-align: center;
+    }
+    .title-list{
+      
       text-align: center
     }
     table, th, td {
@@ -54,22 +58,27 @@
     td {
       padding: 15px;
     }
+    .footeruser{
+      text-align: right
+    }
+    .header-date{
+      text-align: right
+    }
 </style>
 </head>
 <body>
   <div class="header">
     <img src="{{asset('assets/images/logo.jpg')}}" alt="Logo" class="headerlogo">
-  </div>
-  <div class="title-page">
     <h3>องค์การพิพิธภัณฑ์วิทยาศาสตร์แห่งชาติ</h3>
     <h4>พิพิธภัณฑ์เทคโนโลยีสารสนเทศ</h4>
     <h4>เทคโนธานี ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</h4>
+    <br>
+    <h4 class="title-list">จำนวนการยืมครุภัณฑ์</h4>
   </div>
-  <h4>รายการยืมครุภัณฑ์ประจำเดือน</h4>
-  <p>พิมพ์วันที่ {{ $day }} เดือน {{ $month }} พ.ศ. {{ $year }}</p>
+  {{-- <div class="title-page"> --}}
+  {{-- </div> --}}
+  <p class="header-date">พิมพ์วันที่ {{ $day }} เดือน {{ $month }} พ.ศ. {{ $year }}</p>
   <div class="table-responsive">
-      
-    
     <table class="table" style="width:100%">
       <thead class="thead-light">
         <tr>
@@ -87,7 +96,7 @@
         @php
           $i = 1;
         @endphp
-
+  
         @foreach($logs as $key => $order)
         <tr>
           <td><h5>{{$key + 1}}</h5></td>
@@ -105,12 +114,11 @@
         @endforeach
       </tbody>
     </table>
-    <div class="pull-right">
-        {{$logs->links()}}
-      </div>
-      
   </div>
-  {{-- {{$logs->item_id}}
-  {{$logs->item_name}} --}}
+  <div class="footeruser">
+    <h4>ลงชื่อเจ้าหน้าที่กองนิทรรศการ</h4>
+    <h4> </h4>
+    <h4>(...........{{ Auth::user()->username }}...........)</h4>
+  </div>
 </body>
 </html>

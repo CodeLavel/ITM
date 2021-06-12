@@ -1,6 +1,6 @@
 
 <div class="form-group {{ $errors->has('du_name') ? 'has-error' : '' }}">
-    <label for="du_name" class="col-md-2 control-label">ชื่อครุภัณฑ์</label>
+    <label for="du_name" class="col-md-2 control-label">ชื่อครุภัณฑ์ <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></label>
     <div class="col-md-10">
         <input class="form-control" name="du_name" type="text" id="du_name" value="{{ old('du_name', optional($durable)->du_name) }}" minlength="1" placeholder="กรอกชื่อครุภัณฑ์..." required>
         {!! $errors->first('du_name', '<p class="help-block">:message</p>') !!}
@@ -24,7 +24,7 @@
 </div>
 -->
 <div class="form-group {{ $errors->has('duID') ? 'has-error' : '' }}">
-    <label for="duID" class="col-md-2 control-label">รหัสครุภัณฑ์</label>
+    <label for="duID" class="col-md-2 control-label">รหัสครุภัณฑ์ <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></label>
     <div class="col-md-10">
         <input class="form-control" name="duID" type="text" id="duID" value="{{ old('duID', optional($durable)->duID) }}" minlength="1" placeholder="กรอกรหัสครุภัณฑ์...">
         {!! $errors->first('duID', '<p class="help-block">:message</p>') !!}
@@ -32,7 +32,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('category_id') ? 'has-error' : '' }}">
-    <label for="category_id" class="col-md-2 control-label">หมวดหมู่</label>
+    <label for="category_id" class="col-md-2 control-label">หมวดหมู่ <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></label>
     <div class="col-md-10">
         <select class="form-control" id="category_id" name="category_id">
         	    <option value="" style="display: none;" {{ old('category_id', optional($durable)->category_id ?: '') == '' ? 'selected' : '' }} disabled selected>-- เลือกหมวดหมู่ --</option>
@@ -40,7 +40,7 @@
 			    <option value="{{ $key }}" {{ old('category_id', optional($durable)->category_id) == $key ? 'selected' : '' }}>
 			    	{{ $category }}
 			    </option>
-			       @endforeach
+			@endforeach
         </select>
 
         {!! $errors->first('category_id', '<p class="help-block">:message</p>') !!}
@@ -48,7 +48,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('catagory_id') ? 'has-error' : '' }}">
-    <label for="catagory_id" class="col-md-2 control-label">สถานที่ครุภัณฑ์</label>
+    <label for="catagory_id" class="col-md-2 control-label">สถานที่ครุภัณฑ์ <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></label>
     <div class="col-md-10">
         <select class="form-control" id="catagory_id" name="catagory_id">
         	    <option value="" style="display: none;" {{ old('catagory_id', optional($durable)->catagory_id ?: '') == '' ? 'selected' : '' }} disabled selected>-- เลือกสถานที่ --</option>
@@ -64,7 +64,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('amount') ? 'has-error' : '' }}">
-    <label for="amount" class="col-md-2 control-label">จำนวนทั้งหมด</label>
+    <label for="amount" class="col-md-2 control-label">จำนวนทั้งหมด <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></label>
     <div class="col-md-10">
         <input class="form-control" name="amount" type="number" id="amount" onchange="Calculation()"
         value="{{ old('amount', optional($durable)->amount) }}" onkeypress="number(event)" minlength="1" placeholder="ระบุจำนวน...">
@@ -82,7 +82,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('use') ? 'has-error' : '' }}">
-    <label for="use" class="col-md-2 control-label">จำนวนที่ใช้ได้</label>
+    <label for="use" class="col-md-2 control-label">จำนวนที่ใช้ได้ <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></label>
     <div class="col-md-10">
         <input class="form-control" name="use" type="text" id="use" value="{{ old('use', optional($durable)->use) }}" onkeypress="number(event)" minlength="1">
         {!! $errors->first('use', '<p class="help-block">:message</p>') !!}

@@ -14,27 +14,27 @@
                       <form class="form-group" action="/durables/createOrder" method="post">
                             @csrf
                           <div class="form-group">
-                            <label for="rdate"><h4>วันที่คืน</h4></label>
+                            <label for="rdate"><h4>วันที่คืน <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></h4></label>
                             <input type="date" name="rdate" value="" class="form-control col-md-12" placeholder="*วันที่คืน" required>
                           </div>
 
                           <div class="form-group">
-                            <label for="fname"><h4>ชื่อ</h4></label>
+                            <label for="fname"><h4>ชื่อ <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></h4></label>
                             <input type="text" name="fname" value="" class="form-control col-md-12" placeholder="*ชื่อ" required>
                           </div>
 
                           <div class="form-group">
-                            <label for="lname"><h4>นามสกุล</h4></label>
+                            <label for="lname"><h4>นามสกุล  <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></h4></label>
                             <input type="text" name="lname" value="" class="form-control col-md-12" placeholder="*นามสกุล" required>
                           </div>
 
                           <div class="form-group">
-                            <label for="userID"><h4>รหัสพนักงาน</h4></label>
+                            <label for="userID"><h4>รหัสพนักงาน <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></h4></label>
                             <input type="text" name="userID" value="" class="form-control col-md-12" placeholder="*กรอกรหัสพนักงาน" required>
                           </div>
 
                           <div class="form-group">
-                              <label for="address"><h4>เลือกสังกัด</h4></label>
+                              <label for="address"><h4>เลือกสังกัด <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></h4></label>
                                 <select class="form-control col-md-12" name="address" id="address" value="" autofocus>
                                   <option ></option>
                                   <option >พิพิธภัณฑ์วิทยาศาสตร์ : พวท.</option>
@@ -50,12 +50,12 @@
                           </div>
 
                           <div class="form-group">
-                            <label for="phone"><h4>เบอร์โทรศัพท์</h4></label>
+                            <label for="phone"><h4>เบอร์โทรศัพท์ <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></h4></label>
                             <input type="text" name="phone" value="" pattern="[0-9.]+" onkeypress="number(event)" maxlength="10" class="form-control col-md-12" placeholder="*กรอกเบอร์โทรศัพท์" required>
                           </div>
 
                           <div class="form-group">
-                            <label for="place"><h4>สถานที่นำไปใช้</h4></label>
+                            <label for="place"><h4>สถานที่นำไปใช้ <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></h4></label>
                             <textarea type="textarea" name="place" rows="5" cols="40" class="form-control col-md-12" placeholder="*โปรดระบุสถานที่ที่นำไปใช้ให้ละเอียด และชัดเจน" required></textarea>
                           </div>
 

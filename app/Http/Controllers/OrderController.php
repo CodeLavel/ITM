@@ -175,6 +175,68 @@ class OrderController extends Controller
       $pdf::WriteHTML($html,true,false,true,false);
       $pdf::Output('report.pdf');
     }
+    public function pdf3()
+    {
+      $day = Carbon::now()->format('d');
+      $m = Carbon::now()->format('m');
+      $thai_months = [
+        '01' => 'มกราคม',
+        '02' => 'กุมภาพันธ์',
+        '03' => 'มีนาคม',
+        '04' => 'เมษายน',
+        '05' => 'พฤษภาคม',
+        '06' => 'มิถุนายน',
+        '07' => 'กรกฎาคม',
+        '08' => 'สิงหาคม',
+        '09' => 'กันยายน',
+        '10' => 'ตุลาคม',
+        '11' => 'พฤศจิกายน',
+        '12' => 'ธันวาคม',
+    ];
+    $month = $thai_months[$m];
+      $y = Carbon::now()->format('Y');
+      $year = $y + 543;
+      $logs3 = DB::table('orders')->join('orderitems','orderitems.order_id','=','orders.order_id')->where('item_status',1)->paginate(9999);
+      $view=view("process.pdf3",["logs3"=>$logs3],compact('day','month','year'));
+      $html=$view->render();
+      $pdf = new PDF();
+      $pdf::SetTitle('รายการยืมครุภัณฑ์คืนแล้ว');
+      $pdf::AddPage();
+      $pdf::SetFont('freeserif');
+      $pdf::WriteHTML($html,true,false,true,false);
+      $pdf::Output('report.pdf');
+    }
+    public function pdf4()
+    {
+      $day = Carbon::now()->format('d');
+      $m = Carbon::now()->format('m');
+      $thai_months = [
+        '01' => 'มกราคม',
+        '02' => 'กุมภาพันธ์',
+        '03' => 'มีนาคม',
+        '04' => 'เมษายน',
+        '05' => 'พฤษภาคม',
+        '06' => 'มิถุนายน',
+        '07' => 'กรกฎาคม',
+        '08' => 'สิงหาคม',
+        '09' => 'กันยายน',
+        '10' => 'ตุลาคม',
+        '11' => 'พฤศจิกายน',
+        '12' => 'ธันวาคม',
+    ];
+    $month = $thai_months[$m];
+      $y = Carbon::now()->format('Y');
+      $year = $y + 543;
+      $logs4 = DB::table('orders')->join('orderitems','orderitems.order_id','=','orders.order_id')->where('item_status',null)->paginate(9999);
+      $view=view("process.pdf4",["logs4"=>$logs4],compact('day','month','year'));
+      $html=$view->render();
+      $pdf = new PDF();
+      $pdf::SetTitle('รายการยืมครุภัณฑ์ยังไม่คืน');
+      $pdf::AddPage();
+      $pdf::SetFont('freeserif');
+      $pdf::WriteHTML($html,true,false,true,false);
+      $pdf::Output('report.pdf');
+    }
 
 
 
