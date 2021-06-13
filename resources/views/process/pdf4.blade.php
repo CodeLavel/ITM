@@ -83,12 +83,12 @@
       <thead class="thead-light">
         {{-- <colgroup span= "1" width="10"></colgroup> --}}
         <tr>
-                        <th scope="col"><h4>ลำดับ</h4></th>
-                        <th scope="col" ><h4>รายการ</h4></th>
+                        <th scope="col" style="width: 50px"><h4>ลำดับ</h4></th>
+                        <th scope="col" style="width: 50px"><h4>รายการ</h4></th>
                         <th scope="col"><h4>วันที่ยืม</h4></th>
                         <th scope="col"><h4>วันที่คืน</h4></th>
                         <th scope="col"><center><h4>ชื่อ-นามสกุล</h4></center></th>
-                        <th scope="col"><center><h4>ชื่อครุภัณฑ์</h4></center></th>
+                        <th scope="col" style="width: 150px"><center><h4>ชื่อครุภัณฑ์</h4></center></th>
         </tr>
       </thead>
       <tbody>
@@ -98,12 +98,12 @@
 
         @foreach($logs4 as $key => $order)
         <tr>
-          <td><h5>{{$key + 1}}</h5></td>
-          <td><h5>{{$order->order_id}}</h5></td>
+          <td style="width: 50px"><h5>{{$key + 1}}</h5></td>
+          <td style="width: 50px"><h5>{{$order->order_id}}</h5></td>
           <td><h5>{{$order->date}}</h5></td>
           <td><h5>{{$order->rdate}}</h5></td>
           <td style="text-align: center"><h5>{{$order->fname}} {{$order->lname}}</h5></td>
-          <td style="text-align: center"><h5>{{$order->item_name}}</h5></td>
+          <td style="text-align: center" style="width: 150px"><h5>{{$order->item_name}}</h5></td>
 
         </tr>
         @endforeach
@@ -113,7 +113,8 @@
   <div class="footeruser">
     <h4>ลงชื่อเจ้าหน้าที่กองนิทรรศการ</h4>
     <h4> </h4>
-    <h4>(...........{{ Auth::user()->username }}...........)</h4>
+    <h4>(...........{{ Auth::user()->names }}...........)</h4>
+    <h4>ตำแหน่ง {{ Auth::user()->position }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
   </div>
 </body>
 </html>

@@ -60,7 +60,9 @@
                         <tr>
                             <th><h5>ลำดับ</h5></th>
                             <th><h5>ชื่อผู้ใช้</h5></th>
+                            <th><h5>ชื่อ-นามสกุล</h5></th>
                             <th><h5>อีเมล์</h5></th>
+                            <th><h5>ตำแหน่ง</h5></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -69,7 +71,9 @@
                         <tr>
                             <td><h5>{{ $i++ }}</h5></td>
                             <td><h5>{{ $us->username }}</h5></td>
+                            <td><h5>{{ $us->names }}</h5></td>
                             <td><h5>{{ $us->email }}</h5></td>
+                            <td><h5>{{ $us->position }}</h5></td>
                             <td>
 
                                 <form method="POST" action="{!! route('users.users.destroy', $us->id) !!}" accept-charset="UTF-8">

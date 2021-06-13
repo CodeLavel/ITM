@@ -111,7 +111,8 @@
   <div class="footeruser">
     <h4>ลงชื่อเจ้าหน้าที่กองนิทรรศการ</h4>
     <h4> </h4>
-    <h4>(...........{{ Auth::user()->username }}...........)</h4>
+    <h4>(...........{{ Auth::user()->names }}...........)</h4>
+    <h4>ตำแหน่ง {{ Auth::user()->position }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
   </div>
 </body>
 </html>

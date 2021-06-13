@@ -97,10 +97,10 @@
                                 <a href="{{ url('orders') }}">รายการยืมครุภัณฑ์</a>
                             </li>
                             <li>
-                                <a href="#">ครุภัณฑ์คืนแล้ว</a>
+                                <a href="{{ url('orders/showordersuccess') }}">ครุภัณฑ์คืนแล้ว</a>
                             </li>
                             <li>
-                                <a href="#">ครุภัณฑ์ยังไม่คืน</a>
+                                <a href="{{ url('orders/showorderfailed') }}">ครุภัณฑ์ยังไม่คืน</a>
                             </li>
                             <li>
                                 <a href="{{ url('categories') }}">หมวดหมู่</a>

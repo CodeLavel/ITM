@@ -59,8 +59,35 @@
                       <tr>
                         <td><h5>{{$key + 1}}</h5></td>
                         <td style='word-break:break-all' width="20%"><h5>{{$order->item_name}}</h5></td>
-                        <td><h5>{{$order->date}}</h5></td>
-                        <td><h5>{{$order->rdate}}</h5></td>
+                        @php
+                        $thai_months = [
+                          '01' => 'มกราคม',
+                          '02' => 'กุมภาพันธ์',
+                          '03' => 'มีนาคม',
+                          '04' => 'เมษายน',
+                          '05' => 'พฤษภาคม',
+                          '06' => 'มิถุนายน',
+                          '07' => 'กรกฎาคม',
+                          '08' => 'สิงหาคม',
+                          '09' => 'กันยายน',
+                          '10' => 'ตุลาคม',
+                          '11' => 'พฤศจิกายน',
+                          '12' => 'ธันวาคม',
+                            ];
+                         $day = date('d', strtotime($order->date)); 
+                         $date = date('m', strtotime($order->date));   
+                         $y = date('Y', strtotime($order->date));  
+                         $year = $y+543;
+                         $mount =  $thai_months[$date];
+
+                         $day2 = date('d', strtotime($order->rdate));  
+                         $date2 = date('m', strtotime($order->rdate));
+                         $y2 = date('Y', strtotime($order->rdate));
+                         $year2 = $y2+543;
+                         $mount2 =  $thai_months[$date2];
+                        @endphp
+                        <td><h5>{{$day."/".$mount."/".$year}}</h5></td>
+                        <td><h5>{{$day2."/".$mount2."/".$year2}}</h5></td>
                         <td style='word-break:break-all' width="9%"><h5>{{$order->userID}}</h5></td>
                         <td style='word-break:break-all' width="8%"><h5>{{$order->fname}} {{$order->lname}}</h5></td>
                         <td style='word-break:break-all' width="13%"><h5>{{$order->address}}</h5></td>

@@ -41,6 +41,8 @@ Route::get('orders/showorder','OrderController@showorder');
 Route::get('orders/showorderlogs','OrderController@showorderlogs');
 Route::get('orders/showordermount','OrderController@showordermount');
 Route::post('orders/showorderdate','OrderController@showorderdate')->name('showorderdate');
+Route::get('orders/showordersuccess','OrderController@showordersuccess');
+Route::get('orders/showorderfailed','OrderController@showorderfailed');
 Route::get('orders/pdf','OrderController@pdf');
 Route::get('orders/pdf2','OrderController@pdf2');
 Route::get('orders/pdf3','OrderController@pdf3');

@@ -26,7 +26,7 @@
                         </option>
                           @endforeach --}}
                           <option value="">เลือกตำแหน่ง</option>
-                          <option value="academician">นักวิชาการ</option>
+                          <option value="นักวิชาการ">นักวิชาการ</option>
                 </select>
         {!! $errors->first('catagory_id', '<p class="help-block">:message</p>') !!}
         </div>

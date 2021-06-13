@@ -120,8 +120,11 @@ class UserController extends Controller
         
         // print_r($users);
         $update = DB::table('users')->where('id', $id)->update(
-            ['username' => $request->username,
-            'email' => $request->email
+            [
+                'username' => $request->username,
+                'email' => $request->email,
+                'names' => $request->names,
+                // 'position' => $request->position
             ]
         );
         // $id->update($request->all());

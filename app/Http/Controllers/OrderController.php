@@ -106,11 +106,20 @@ class OrderController extends Controller
       
     }
     public function showorderlogs(){
-
       $orderlogs=DB::table('durablelog')->join('durables','durablelog.item_id','=','durables.id')->orderBy('total', 'desc')->paginate(10);
       return view("process.showOrderlogs",["orderlogs"=>$orderlogs]);
-        //return "Show All Order";
+    }
 
+    public function showordersuccess(){
+      $ordersuccess=DB::table('orders')->join('orderitems','orderitems.order_id','=','orders.order_id')->where('item_status',1)->paginate(10);
+      
+      
+      return view("process.showOrderSucess",["ordersuccess"=>$ordersuccess]);
+    }
+    
+    public function showorderfailed(){
+      $orderfailed=DB::table('orders')->join('orderitems','orderitems.order_id','=','orders.order_id')->where('item_status',null)->paginate(10);
+      return view("process.showOrderFailed",["orderfailed"=>$orderfailed]);
     }
 
    public function pdf()
