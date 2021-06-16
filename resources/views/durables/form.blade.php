@@ -110,9 +110,9 @@
 
         @if (isset($durable->photo) && !empty($durable->photo))
             <div class="input-group input-width-input">
-                <span class="input-group-addon">
+                {{-- <span class="input-group-addon">
                     <input type="checkbox" name="custom_delete_photo" class="custom-delete-file" value="1" {{ old('custom_delete_photo', '0') == '1' ? 'checked' : '' }}> ลบรูปภาพ
-                </span>
+                </span> --}}
 
                 <span class="input-group-addon custom-delete-file-name">
                     <img src="{{asset('assets/images/durables')}}/{{$durable->photo}}">
