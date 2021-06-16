@@ -31,11 +31,11 @@
                       @foreach($orderitems as $orderitem)
                       <tr>
                         <th scope="row"><h4><br>{{$orderitem->order_id}}</h4></th>
-                    @if($orderitem->photo)
-                        <th scope="row"><img height="90" width="100" src="{{ asset ('storage/' . $orderitem->photo) }}" alt=""/></th>
-                      @else
-                        <th scope="row"></th>
-                    @endif
+                        @if(empty($durable->photo))
+                        <th><img src="{{asset('assets/images/durables/noImg.jpg')}}" height="100" width="120" ></th>
+                        @else
+                        <th><img src="{{asset('assets/images/durables')}}/{{$durable->photo}}" ></th>
+                        @endif
                         <th scope="row"><h4><br>{{$orderitem->item_name}}</h4></th>
                         <th scope="row"><h4><br>{{$orderitem->item_category}}</h4></th>
                     <!--    <th scope="row"><h4>{{$orderitem->item_brand}}</h4></th>

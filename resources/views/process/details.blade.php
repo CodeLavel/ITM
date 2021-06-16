@@ -15,22 +15,19 @@
                             <h5><i class="fas fa-edit"></i> ระบุจำนวนยืม</h5>
                           </div>
                           <div class="card-box">
-                            @if($durable->photo)
+                            
                                     <div class="form-group row">
                                       <label for="photo" class="col-md-2 col-form-label text-md-right">รูปภาพ : </label>
                                         <div class="col-md-7">
-                                          <img height="120" width="130" src="{{ asset ('storage/' . $durable->photo) }}" alt=""/>
+                                          @if(empty($durable->photo))
+                                          <img height="120" width="130" src="{{asset('assets/images/durables/noImg.jpg')}}" alt=""/>
+                                          @else
+                                          <center><img src="{{asset('assets/images/durables')}}/{{$durable->photo}}"></center>
+                                          @endif
                                         </div>
                                     </div>
-                              @else
-
-                              <div class="form-group row">
-                                <label for="photo" class="col-md-2 col-form-label text-md-right">รูปภาพ : </label>
-                                  <div class="col-md-7">
-                                  </div>
-                              </div>
-
-                            @endif
+                              
+                            
                                     <div class="form-group row">
                                       <label for="du_name" class="col-md-2 col-form-label text-md-right">ชื่อครุภัณฑ์ : </label>
                                       <div class="col-md-7">

@@ -115,7 +115,7 @@
                 </span>
 
                 <span class="input-group-addon custom-delete-file-name">
-                    {{ $durable->photo }}
+                    <img src="{{asset('assets/images/durables')}}/{{$durable->photo}}">
                 </span>
             </div>
         @endif

@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Nexmo\Laravel\NexmoServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         
        
 
@@ -231,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Elibyy\TCPDF\Facades\TCPDF::class,
         'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

@@ -76,13 +76,15 @@
 
                                         <tr>
                                             <td><br><br><h4>{{$i++}}</h4></td>
-                                        @if($durable->photo)
-                                            <td><br>
-                                              <img height="120" width="130" src="{{ asset ('storage/' . $durable->photo) }}" alt=""/>
+                                            <td style='word-break:break-all' width="10%">
+                                                @if(empty($durable->photo))
+                                                <img src="{{asset('assets/images/durables/noImg.jpg')}}" height="100" width="120" >
+                                                @else
+                                                <img src="{{asset('assets/images/durables')}}/{{$durable->photo}}" >
+                                                @endif
                                             </td>
-                                        @else
-                                            <td></td>
-                                        @endif
+                                           
+                                       
                                             <td><br><br><h4>{{$durable->du_name}}</h4></td>
                                             <td><br><br><h4>{{ optional($durable->category)->category_name }}</h4></td>
                                       <!--      <td><br><br><h4>{{$durable->brand}}</h4></td>

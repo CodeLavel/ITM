@@ -13,6 +13,7 @@
         "ferdous/laravel-otp-validate": "^1.2",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^2.5",
         "kittinan/php-line-notify": "^0.5.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^1.0",

@@ -72,13 +72,18 @@
                     @foreach($durables as $durable)
                         <tr>
                             <td style='word-break:break-all' width="3%"><br><h5>{{ $i++ }}</h5></td>
-                        @if($durable->photo)
+                        {{-- @if($durable->photo) --}}
+                       
                             <td style='word-break:break-all' width="10%">
-                                <img height="100" width="120" src="{{ asset ('storage/' . $durable->photo) }}" alt=""/>
+                                @if(empty($durable->photo))
+                                <img src="{{asset('assets/images/durables/noImg.jpg')}}" height="100" width="120" >
+                                @else
+                                <img src="{{asset('assets/images/durables')}}/{{$durable->photo}}" >
+                                @endif
                             </td>
-                        @else
+                            
                           <td style='word-break:break-all' width="10%"></td>
-                        @endif
+                      
                             <td style='word-break:break-all' width="13%"><br><h5>{{ $durable->duID }}</h5></td>
                             <td style='word-break:break-all' width="21%"><br><h5>{{ $durable->du_name }}</h5></td>
                             <td><br><h5>{{ optional($durable->category)->category_name }}</h5></td>

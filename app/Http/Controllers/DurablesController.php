@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Catagory;
 use App\Models\Durable;
 use Exception;
+use Intervention\Image\Facades\Image as Image;
 
 class DurablesController extends Controller
 {
@@ -46,10 +47,47 @@ class DurablesController extends Controller
      */
     public function store(DurablesFormRequest $request)
     {
+
+        $data = array(
+            'du_name' => $request->du_name,
+            'duID' => $request->duID,
+            'category_id' => $request->category_id,
+            'catagory_id' => $request->catagory_id,
+            'amount' => $request->amount,
+            'break' => $request->break,
+            'use' => $request->use,
+        );
+
+        $image = $request->file('photo');
+                // เช็คว่ามีการเลือกไฟล์ภาพเข้ามาหรือไม่
+                if(!empty($image)){
+                    $file_name = "product_".time().".".$image->getClientOriginalExtension();
+                    if($image->getClientOriginalExtension() == "jpg" or $image->getClientOriginalExtension() == "png"){
+                       
+                        $imgWidth = 300;
+                        $folderupload = "assets/images/durables";
+                        $path = $folderupload."/".$file_name;
+
+                        // upload to folder durables
+                        $img = Image::make($image->getRealPath());
+
+                        if($img->width() > $imgWidth){
+                            $img->resize($imgWidth, null, function($constraint){
+                                $constraint->aspectRatio();
+                            });
+                        }
+
+                        $img->save($path);
+                        $data['photo'] = $file_name;
+                    }else{
+                        return redirect()->route('durables.durable.index')->withInput()->withErrors(['unexpected_error' => 'ไฟล์ภาพไม่รองรับ อนุญาติเฉพาะ .jpg และ .png.']);
+                    }
+
+                }
+
         try {
 
-            $data = $request->getData();
-
+            // $data = $request->getData();
             Durable::create($data);
 
             return redirect()->route('durables.durable.index')
