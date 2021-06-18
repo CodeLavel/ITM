@@ -1,6 +1,12 @@
 @extends('layouts.main')
 
 @section('content')
+<script src=" {{ asset('js/number.js')}}"></script>
+<script type="text/javascript">
+    function preventBack() { window.history.forward(); }
+    setTimeout("preventBack()", 0);
+    window.onunload = function () { null };
+</script>
 <div class="content-page">
     <div class="content">
         <div class="container-fluid">
@@ -42,7 +48,9 @@
                     </div>
                 </div>
             </center>
+            
             </form>
+            
         </div>
     </div>
   </div> <!-- end card-box-->

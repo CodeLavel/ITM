@@ -1,6 +1,11 @@
 @extends("layouts.main")
 @section("content")
-
+<script src=" {{ asset('js/number.js')}}"></script>
+<script type="text/javascript">
+  function preventBack() { window.history.forward(); }
+  setTimeout("preventBack()", 0);
+  window.onunload = function () { null };
+</script>
 <div class="content-page">
     <div class="content">
 <div class="container-fluid py-3">
@@ -58,7 +63,7 @@
                             <label for="place"><h4>สถานที่นำไปใช้ <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></h4></label>
                             <textarea type="textarea" name="place" rows="5" cols="40" class="form-control col-md-12" placeholder="*โปรดระบุสถานที่ที่นำไปใช้ให้ละเอียด และชัดเจน" required></textarea>
                           </div>
-
+                          
                           <div class="form-group">
                             <input type="submit" name="" value="ยืนยัน" class="form-control btn btn-success">
                           </div>
@@ -71,5 +76,5 @@
   </div>
 </div>
 
-<script src=" {{ asset('js/number.js')}}"></script>
+
 @endsection

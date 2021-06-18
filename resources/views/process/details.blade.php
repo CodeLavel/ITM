@@ -95,7 +95,11 @@
                                               }
                                           }
                                       </script>
-
+                                      <script type="text/javascript">
+                                        function preventBack() { window.history.forward(); }
+                                        setTimeout("preventBack()", 0);
+                                        window.onunload = function () { null };
+                                    </script>
                                       <div class="offset-2">
                                           <button type="submit" class="btn btn-success" id="btnSubmit">
                                               <i class="fas fa-save"></i> บันทึก
