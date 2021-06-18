@@ -20,7 +20,7 @@
                             @csrf
                           <div class="form-group">
                             <label for="rdate"><h4>วันที่คืน <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></h4></label>
-                            <input type="date" name="rdate" value="" class="form-control col-md-12" placeholder="*วันที่คืน" required>
+                            <input type="date" name="rdate" value="" class="form-control col-md-12" placeholder="*วันที่คืน" min="@php echo date('Y-m-d');@endphp" required>
                           </div>
 
                           <div class="form-group">

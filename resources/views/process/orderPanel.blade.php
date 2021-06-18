@@ -51,7 +51,11 @@
                         <th scope="col"><h4>เบอร์โทรศัพท์</h4></th>
                         <th scope="col"><h4>สถานที่นำไปใช้</h4></th>
                         <th scope="col"><h4>รายละเอียด</h4></th>
+                        @if(auth::check())
                         <th scope="col"><h4>สถานะ</h4></th>
+                        @else
+                        <th scope="col"></th>
+                        @endif
                         {{-- <th scope="col"><h4>ยืม/คืน</h4></th> --}}
                         <th scope="col"><h4>หมายเหตุ</h4></th>
                       </tr>
