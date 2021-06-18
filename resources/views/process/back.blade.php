@@ -14,20 +14,16 @@
                             <h5><i class="fas fa-edit"></i> ระบุจำนวนคืน</h5>
                           </div>
                           <div class="card-box">
-                              @if($durables->photo)
-                                    <div class="form-group row">
-                                      <label for="photo" class="col-md-3 col-form-label text-md-right">รูปภาพ : </label>
-                                        <div class="col-md-6">
-                                          <img height="120" width="130" src="{{ asset ('storage/' . $durables->photo) }}" alt=""/>
-                                        </div>
-                                    </div>
-                                @else
-                                <div class="form-group row">
-                                  <label for="photo" class="col-md-3 col-form-label text-md-right">รูปภาพ : </label>
-                                    <div class="col-md-6">
-                                    </div>
+                            <div class="form-group row">
+                              <label for="photo" class="col-md-2 col-form-label text-md-right">รูปภาพ : </label>
+                                <div class="col-md-7">
+                                  @if(empty($durable->photo))
+                                  <img height="120" width="130" src="{{asset('assets/images/durables/noImg.jpg')}}" alt=""/>
+                                  @else
+                                  <center><img src="{{asset('assets/images/durables')}}/{{$durable->photo}}"></center>
+                                  @endif
                                 </div>
-                              @endif
+                            </div>
 
                                     <div class="form-group row">
                                       <label for="du_name" class="col-md-3 col-form-label text-md-right">ชื่อครุภัณฑ์ : </label>

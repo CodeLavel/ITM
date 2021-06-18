@@ -49,12 +49,33 @@ class ProcessController extends Controller
       }
     }
 
-    public function deleteFormCart(Request $request,$id){
+    public function deleteFormCart(Request $request,$id){ //ฟังก์ชันคืนอุปกรณ์ขณะยืม
         $cart=$request->session()->get('cart');
-        if(array_key_exists($id,$cart->items)){
+       
+          // print_r($cart->items[$id]['quantity']);
+          $itemid = $cart->items[$id]['data']['id'];
+          $totalorders = $cart->items[$id]['quantity'];
+          // print_r($itemid);
+          // print_r($totalorders);
+          $datause = DB::table('durables')
+                  ->select('use')
+                  ->where('id', $itemid)->get();
+           $usetotal = $datause[0]->use;
+           $total_all = $totalorders+$usetotal;
+          $update = DB::table('durables')
+                        ->where('id', $itemid)
+                        ->update(['use' => $total_all]);
+
+         //----------ยังไม่ใช้----------
+        //  if(array_key_exists($id,$cart->items)){
+        //   unset($cart->items[$id]);
+        // }
+        //----------ยังไม่ใช้----------
+
+        if($update){
           unset($cart->items[$id]);
         }
-
+        
         $afterCart=$request->session()->get('cart');
         $updateCart=new Cart($afterCart);
         $updateCart->updateAmountQuantity();

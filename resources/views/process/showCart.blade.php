@@ -28,7 +28,7 @@
                                             {{-- <th><h4>ยี่ห้อ</h4></th>
                                             <th><h4>รุ่น</h4></th>  --}}
                                             <th><h4>จำนวน</h4></th>
-                                            {{-- <th></th> --}}
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -41,21 +41,22 @@
                                         <tr>
                                             <td><br><br><h4>{{$i++}}</h4></td>
                                         @if($item['data']['photo'])
-                                            <td><br><img height="90" width="100" src="{{ asset ('storage/' . $item['data']['photo']) }}" alt=""/></td>
+                                            <th><img src="{{asset('assets/images/durables')}}/{{$item['data']['photo']}}"></th>
                                         @else
-                                            <td><br></td>
+                                            <th><img src="{{asset('assets/images/durables/noImg.jpg')}}" height="100" width="120" ></th>
                                         @endif
+
                                             <td><br><br><h4>{{$item['data']['du_name']}}</h4></td>
                                             <td><br><br><h4>{{$item['data']['category']['category_name']}}</h4></td>
                                             <td><br><br><h4>{{$item['quantity']}}</h4></td>
                                             <!--    <td><br><br><h4>{{$item['data']['brand']}}</h4></td>
-                                            <td><br><br><h4>{{$item['data']['gen']}}</h4></td>
+                                            <td><br><br><h4>{{$item['data']['gen']}}</h4></td>-->
 
                                             <td class="py-3"><br><br>
-                                                <a class="badge badge-danger" href="/durables/cart/deleteFormCart/{{$item['data']['id']}}" onclick="return confirm('คุณต้องการลบครุภัณฑ์นี้หรือไม่ ?')">
+                                                <a class="badge badge-danger" href="/durables/cart/deleteFormCart/{{$item['data']['id']}}" onclick="return confirm('คุณต้องการยกเลิกการยืมครุภัณฑ์นี้หรือไม่ ?')">
                                                   <i class="fa fa-times"></i></a>
                                             </td>
-                                          -->
+                                          
                                       @endforeach
                                     </tbody>
                                 </table>
