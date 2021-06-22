@@ -33,6 +33,7 @@ Route::get('orders','OrderController@orderPanel');
 Route::get('orders/detail/{id}','OrderController@showOrderDetail');
 Route::post('/orders/detailord','OrderController@detailord')->name('returnorder');
 Route::post('/orders/addQuantityToInventory/{id}', 'OrderController@addQuantityToInventory');
+Route::get('orderall/{id}','OrderController@orderall')->name('orderall');
 
 Route::put('confirm/edit/{id}','ConfirmController@update');
 Route::put('borrow/edit/{id}','BorrowController@update');

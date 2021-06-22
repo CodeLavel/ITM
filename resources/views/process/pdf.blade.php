@@ -73,7 +73,7 @@
     <h4>พิพิธภัณฑ์เทคโนโลยีสารสนเทศ</h4>
     <h4>เทคโนธานี ตำบลคลองห้า อำเภอคลองหลวง จังหวัดปทุมธานี 12120</h4>
     <br>
-    <h4 class="title-list">จำนวนการยืมครุภัณฑ์</h4>
+    <h4 class="title-list">การยืมครุภัณฑ์</h4>
   </div>
   {{-- <div class="title-page"> --}}
   {{-- </div> --}}
@@ -83,13 +83,13 @@
       <thead class="thead-light">
         <tr>
           <th scope="col"><h4>ลำดับ</h4></th>
-          <th scope="col"><h4>ชื่อครุภัณฑ์</h4></th>
-          <th scope="col"><h4>วันที่ยืม</h4></th>
-          <th scope="col"><h4>วันที่คืน</h4></th>
-          <th scope="col"><h4>รหัส พนง</h4></th>
           <th scope="col"><h4>ชื่อ-นามสกุล</h4></th>
+          <th scope="col"><h4>รหัส พนง</h4></th>
           <th scope="col"><h4>เบอร์โทร</h4></th>
           <th scope="col"><h4>สถานที่</h4></th>
+          <th scope="col"><h4>ชื่อครุภัณฑ์</h4></th>
+          <th scope="col"><h4>วันที่ยืม</h4></th>
+          
         </tr>
       </thead>
       <tbody>
@@ -100,13 +100,44 @@
         @foreach($logs as $key => $order)
         <tr>
           <td><h5>{{$key + 1}}</h5></td>
-          <td><h5>{{$order->item_name}}</h5></td>
-          <td><h5>{{$order->date}}</h5></td>
-          <td><h5>{{$order->rdate}}</h5></td>
-          <td><h5>{{$order->userID}}</h5></td>
           <td><h5>{{$order->fname}} {{$order->lname}}</h5></td>
+          <td><h5>{{$order->userID}}</h5></td>
           <td><h5>{{$order->phone}}</h5></td>
           <td><h5>{{$order->place}}</h5></td>
+          <td><h5>{{$order->item_name}}</h5></td>
+          
+          @php
+                        $thai_months = [
+                          '01' => 'ม.ค.',
+                          '02' => 'ก.พ.',
+                          '03' => 'มี.ค.',
+                          '04' => 'เม.ย.',
+                          '05' => 'พ.ค.',
+                          '06' => 'มิ.ย.',
+                          '07' => 'ก.ค.',
+                          '08' => 'ส.ค.',
+                          '09' => 'ก.ย.',
+                          '10' => 'ต.ค.',
+                          '11' => 'พ.ย.',
+                          '12' => 'ธ.ค.',
+                            ];
+                         $day = date('d', strtotime($order->date)); 
+                         $date = date('m', strtotime($order->date));   
+                         $y = date('Y', strtotime($order->date));  
+                         $year = $y+543;
+                         $mount =  $thai_months[$date];
+
+                         $day2 = date('d', strtotime($order->rdate));  
+                         $date2 = date('m', strtotime($order->rdate));
+                         $y2 = date('Y', strtotime($order->rdate));
+                         $year2 = $y2+543;
+                         $mount2 =  $thai_months[$date2];
+                        @endphp
+                        <td><h5>{{$day."/".$mount."/".$year}}</h5></td>
+                        <td><h5>{{$day2."/".$mount2."/".$year2}}</h5></td>
+          
+          
+          
           {{-- <td style='word-break:break-all' width="8%">
             <a href="/orders/detail/{{$order->order_id}}" class="btn btn-primary">รายละเอียด</a>
           </td>     --}}

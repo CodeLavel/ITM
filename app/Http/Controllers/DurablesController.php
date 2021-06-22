@@ -22,7 +22,7 @@ class DurablesController extends Controller
     {
         $durables = Durable::with('category')->with('catagory')->paginate(999999);
 
-        return view('durables.index', compact('durables'));
+        return view('durables.index', compact('durables'))->with("categories",Category::all()->sortBy('category_name'));
     }
 
     /**

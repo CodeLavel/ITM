@@ -9,6 +9,7 @@
               <div class="card-body">
                 <div class="table-responsive">
                   <h2>รายละเอียดการยืม</h2><br>
+                  
                   <table class="table">
                     <thead class="thead-light">
                       @php
@@ -70,6 +71,74 @@
                     </tbody>
                   </table>
                   <a href="/orders" class="btn btn-primary pull-right">กลับ</a>
+                  @if(auth::check())
+
+                              @if ($orderitem->status == '1')
+                                    <a href="#" class="btn btn-warning text-white pull-right" style="margin-right: 10px" onclick="addmhsForm({{ $orderitem->order_id }});" id="orderall" data-id="{{ $orderitem->order_id }}" data-toggle="modal" data-target="#myModal{{ $orderitem->order_id }}">รออนุมัติ</a>
+                                  @elseif ($orderitem->status == '2')
+                                    <a href="#" class="btn btn-success disabled pull-right" style="margin-right: 10px" onclick="addmhsForm();" id="orderall" data-toggle="modal" data-target="#myModal{{ $orderitem->order_id }}">อนุมัติ</a>
+                                  @elseif ($orderitem->status == '3')
+                                    <a href="#" class="btn btn-danger pull-right" style="margin-right: 10px" onclick="addmhsForm();" id="orderall" data-toggle="modal" data-target="#myModal{{ $orderitem->order_id }}">ไม่อนุมัติ</a>
+                              @endif
+
+                          @endif
+                          <!-- The Modal -->
+                        <div class="modal fade" id="myModal{{ $orderitem->order_id }}">
+                          <div class="modal-dialog modal-dialog py-5">
+                          <div class="modal-content">
+                            
+                              <!-- Modal Header -->
+                              <div class="modal-header">
+                                  <h4 class="modal-title">สถานะ</h4>
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              </div>
+
+                              <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="/confirm/edit/{{$orderitem->order_id}}">
+
+                                      {{ csrf_field() }}
+                                      {{ method_field('PUT') }}
+                              <!-- Modal body -->
+                              <div class="modal-body">
+                                      <div class="form-group">
+                                              <label><b>ชื่อผู้ยืม : </b></label>
+                                              {{$orderitem->fname}} {{$orderitem->lname}}
+                                              <label>|<b> สังกัด : </b></label>
+                                              {{$orderitem->address}} <br>
+                                              <label><b>รหัสพนักงาน : </b></label>
+                                              {{$orderitem->userID}}
+                                              <label>|<b> เบอร์โทร : </b></label>
+                                              {{$orderitem->phone}} 
+                                              {{-- <br><label for="place"><h5>ครุภัณฑ์ที่ต้องการยืม : </h5></label>
+                                              <br><span>ลำดับ</span> <span>ชื่อครุภัณฑ์</span> <span>หมวดหมู่</span> <span>จำนวน</span> --}}
+                                              {{-- <table id="records_table"></table> --}}
+                                              {{-- <p id="result"> </p> --}}
+                                      </div>
+                                      {{-- <div class="form-group">
+                                        
+                                      </div> --}}
+                                      <div class="form-group">
+                                        <select name="status" class="form-control">
+                                                <option value="1" @if($orderitem->status == '1') selected @endif>รออนุมัติ</option>
+                                                <option value="2" @if($orderitem->status == '2') selected @endif>อนุมัติ</option>
+                                                <option value="3" @if($orderitem->status == '3') selected @endif>ไม่อนุมัติ</option>
+                                        </select>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="place"><h5>หมายเหตุ : </h5></label>
+                                        <input type="text" value="{{$orderitem->comment}}" name="comment" class="form-control col-md-12">
+                                      </div>
+
+                              </div>
+
+                              <!-- Modal footer -->
+                              <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success">บันทึก</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
                       </div>
                     </div>
                   </div>

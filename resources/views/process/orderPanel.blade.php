@@ -39,7 +39,7 @@
               <br>
                 <div class="table-responsive">
 
-                  <table class="table" id="">
+                  <table class="table">
                     <thead class="thead-light">
                       <tr>
                         <th scope="col"><h4>ลำดับ</h4></th>
@@ -51,11 +51,11 @@
                         <th scope="col"><h4>เบอร์โทรศัพท์</h4></th>
                         <th scope="col"><h4>สถานที่นำไปใช้</h4></th>
                         <th scope="col"><h4>รายละเอียด</h4></th>
-                        @if(auth::check())
+                        {{-- @if(auth::check())
                         <th scope="col"><h4>สถานะ</h4></th>
                         @else
                         <th scope="col"></th>
-                        @endif
+                        @endif --}}
                         {{-- <th scope="col"><h4>ยืม/คืน</h4></th> --}}
                         <th scope="col"><h4>หมายเหตุ</h4></th>
                       </tr>
@@ -105,20 +105,41 @@
                         <td style='word-break:break-all' width="8%">
                           <a href="/orders/detail/{{$order->order_id}}" class="btn btn-primary">รายละเอียด</a>
                         </td>
-                        <td>
+                        {{-- <td>
                           @if(auth::check())
 
                               @if ($order->status == '1')
-                                    <a href="#" class="btn btn-warning text-white" data-toggle="modal" data-target="#myModal{{ $order->order_id }}">รออนุมัติ</a>
+                                    <a href="#" class="btn btn-warning text-white" onclick="addmhsForm({{ $order->order_id }});" id="orderall" data-id="{{ $order->order_id }}" data-toggle="modal" data-target="#myModal{{ $order->order_id }}">รออนุมัติ</a>
                                   @elseif ($order->status == '2')
-                                    <a href="#" class="btn btn-success disabled" data-toggle="modal" data-target="#myModal{{ $order->order_id }}">อนุมัติ</a>
+                                    <a href="#" class="btn btn-success disabled" onclick="addmhsForm();" id="orderall" data-toggle="modal" data-target="#myModal{{ $order->order_id }}">อนุมัติ</a>
                                   @elseif ($order->status == '3')
-                                    <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ $order->order_id }}">ไม่อนุมัติ</a>
+                                    <a href="#" class="btn btn-danger" onclick="addmhsForm();" id="orderall" data-toggle="modal" data-target="#myModal{{ $order->order_id }}">ไม่อนุมัติ</a>
                               @endif
 
                           @endif
-                        </td>
-
+                        </td> --}}
+                        {{-- <script type="text/javascript">
+                          $(document).ready(function() {
+                            $("#orderall").click(function () {
+                              // var passedID = $(this).data('id');
+                            console.log("ok");
+                          // var building_id = $(this).val();
+                          // if(building_id){
+                          //         $.ajax({
+                          //             type: "GET",
+                          //             url:'/backend/getmeetingroomlist/'+building_id,
+                          //             dataType: 'json',
+                          //             success: function(response){
+                          //                 $('#mto_room').html('<option value="">เลือกห้องประชุม</option>'); 
+                          //                 $.each(response,function(key,value){
+                          //                 $("#mto_room").append('<option value="'+value+'">'+value+'</option>');
+                          //               }); 
+                          //               }
+                          //           });
+                          //       }
+                            });    
+                        });
+                        </script> --}}
                         {{-- <td>
 
                        @if(auth::check())
@@ -145,52 +166,7 @@
                         <td style='word-break:break-all' width="7%"><h5>{{$order->comment}}</h5></td>
                       </tr>
 
-                      <!-- The Modal -->
-                        <div class="modal fade" id="myModal{{ $order->order_id }}">
-                            <div class="modal-dialog modal-dialog py-5">
-                            <div class="modal-content">
-
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">สถานะ</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-
-                                <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="/confirm/edit/{{$order->order_id}}">
-
-                                        {{ csrf_field() }}
-                                        {{ method_field('PUT') }}
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                        <div class="form-group">
-                                                <label>ชื่อผู้ยืม : </label>
-                                                {{$order->fname}} {{$order->lname}}
-                                        </div>
-
-                                        <div class="form-group">
-                                                <select name="status" class="form-control">
-                                                        <option value="1" @if($order->status == '1') selected @endif>รออนุมัติ</option>
-                                                        <option value="2" @if($order->status == '2') selected @endif>อนุมัติ</option>
-                                                        <option value="3" @if($order->status == '3') selected @endif>ไม่อนุมัติ</option>
-                                                </select>
-                                        </div>
-
-                                        <div class="form-group">
-                                          <label for="place"><h5>หมายเหตุ : </h5></label>
-                                          <input type="text" value="{{$order->comment}}" name="comment" class="form-control col-md-12">
-                                        </div>
-
-                                </div>
-
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                      <button type="submit" class="btn btn-success">บันทึก</button>
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
+                      
 
                         <!-- The Modal1 -->
                           {{-- <div class="modal fade" id="myModal1{{ $order->order_id }}">

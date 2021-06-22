@@ -17,7 +17,8 @@ class OrderController extends Controller
     public function orderPanel()
     {
       $orders=DB::table('orders')->where('otp_status', 1)->orderByDesc('order_id')->paginate(10);
-      return view('process.orderPanel',["orders"=>$orders]);
+      $ordersall= DB::table('orders')->join('orderitems','orders.order_id','=','orderitems.order_id')->where('otp_status', 1)->get();
+      return view('process.orderPanel',["orders"=>$orders,"ordersall"=>$ordersall]);
     }
 
     public function showOrderDetail(Request $request,$id)
@@ -37,7 +38,7 @@ class OrderController extends Controller
       //  print_r($data->item_id);
 
       
-      print_r($data1);
+      // print_r($data1);
       // print_r($data2);
 
        
@@ -246,8 +247,10 @@ class OrderController extends Controller
       $pdf::WriteHTML($html,true,false,true,false);
       $pdf::Output('report.pdf');
     }
-
-
-
+    public function orderall($id){
+      $ordersall= DB::table('orderitems')->where('order_id', $id)->get();
+      return response()->json($ordersall,200,['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
+      JSON_UNESCAPED_UNICODE);
+    }
 }
 //->join('orderitems','orders.order_id','=','orderitems.order_id')

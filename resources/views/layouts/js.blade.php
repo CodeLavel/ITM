@@ -31,13 +31,69 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 
 <script type="text/javascript">
-    $(document).ready( function () {
+    $(document).ready(function() {
         $('#table_id').DataTable({
-          "language":{
-            "url" : "//cdn.datatables.net/plug-ins/1.10.20/i18n/Thai.json"
-          }
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Thai.json"
+            }
         });
-      } );
+    });
 </script>
-
-
+<script>
+    function addmhsForm(id) {
+        $(document).ready(function() {
+            var passedID = $("#orderall").data("id");
+            // console.log("The OK.");
+            // console.log(id);
+            if (id) {
+                $.ajax({
+                    type: "GET",
+                    url: 'orderall/' + id,
+                    dataType: 'json',
+                    success: function(response) {
+                        let text = "";
+                        $.each(response, function(key, value) {
+                        
+                          for (var i = 0; i < response.length; i++) {
+                                var obj = response[i];
+                                // alert(key+1 +" | "+response[i].item_name+" | "+response[i].item_amount);
+                                // alert(response[i].item_amount);
+                                  text = key+1 +" | "+response[i].item_name+" | "+ response[i].item_category+" | "+ response[i].item_amount;
+                                  document.getElementById("result").innerHTML = text;
+                            }
+                        
+                        
+                        // $('#testdiv').prepend("<span class='test' data-unixtime='" + entry[2] + "'>time: " + entry[0] + "<br/> tablename: " + entry[1].tablename +"<br/>table seats:" + entry[1].tableseats + "<br/><br/></span><br>");
+                        // response.forEach((entry) => {
+                        //     $('#testdiv').prepend("<span class='test' data-unixtime='" + entry[2] + "'>time: " + entry[0] + "<br/> tablename: " + entry[1].tablename +"<br/>table seats:" + entry[1].tableseats + "<br/><br/></span><br>");
+                        //     })
+                        // var result = document.getElementById("result");
+                        // var obj = JSON.parse(response);
+                        //     for (var key in obj) {
+                        //         result.innerHTML += "<br/>" + key + ": ";
+                        //         for (var prop in obj[key]) {
+                        //             result.innerHTML += "<br/>" + prop + " = " + obj[key][prop];
+                        //         }
+                        //     }
+                        //     result.innerHTML += "<br/>Total = " + obj.total;
+                            // console.log(key);
+                            // console.log(value['item_name']);
+                            
+                            // result.innerHTML += "<br/>" + key + " = " + value['item_name'];
+                            
+                        // for(var i=0; i<key.length; i++){
+                        //     // $('#testdiv').text(key[i]);
+                        //     console.log(key.length);
+                        // }
+                        
+                        //   console.log(`${key}: ${value['item_name']},${value['item_category']},${value['item_amount']}`);
+                        //   for(var i = 0; i < value.length; i++){ 
+                        //         document.getElementById('demo').innerHTML+= '<p>'+value[i]+'</p>;
+                        //     }
+                        });
+                    }
+                });
+            }
+        });
+    }
+</script>
