@@ -60,8 +60,6 @@ class HomeController extends Controller
 
       return view('process.lineToken');
         
-
-        // return response()->json($logOtp,200);
     }
 
     public function LineToken(Request $request){
@@ -75,8 +73,6 @@ class HomeController extends Controller
 
       return view('process.lineToken');
       
-
-      // return response()->json($logOtp,200);
   }
     public function sentOtp(){
       

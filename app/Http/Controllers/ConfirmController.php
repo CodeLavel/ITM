@@ -51,8 +51,6 @@ class ConfirmController extends Controller
         
             $api_url = 'https://notify-api.line.me/api/notify';
             $json = null;
-            //line ส่วนตัว : EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC
-            //line กลุ่ม Codelavel : CBhrL0GWdt3mG8XgMoFQMkKWvMZ1lxxUvhEWtZYUENL
                 $headers = [
                     'Authorization: Bearer ' . $linetoken->token
                 ];

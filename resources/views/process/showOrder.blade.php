@@ -93,9 +93,6 @@
                         <td style='word-break:break-all' width="13%"><h5>{{$order->address}}</h5></td>
                         <td style='word-break:break-all' width="9%"><h5>{{$order->phone}}</h5></td>
                         <td style='word-break:break-all' width="13%"><h5>{{$order->place}}</h5></td>
-                        {{-- <td style='word-break:break-all' width="8%">
-                          <a href="/orders/detail/{{$order->order_id}}" class="btn btn-primary">รายละเอียด</a>
-                        </td>     --}}
                       </tr>
                       @endforeach
                     </tbody>

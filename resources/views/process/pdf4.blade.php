@@ -75,13 +75,10 @@
     <br>
     <h4 class="title-list">รายการยืมครุภัณฑ์ยังไม่คืน</h4>
   </div>
-  {{-- <div class="title-page"> --}}
-  {{-- </div> --}}
   <p class="header-date">พิมพ์วันที่ {{ $day }} เดือน {{ $month }} พ.ศ. {{ $year }}</p>
   <div class="table-responsive">
     <table class="table" style="width:100%">
       <thead class="thead-light">
-        {{-- <colgroup span= "1" width="10"></colgroup> --}}
         <tr>
                         <th scope="col" style="width: 50px"><h4>ลำดับ</h4></th>
                         <th scope="col" style="width: 50px"><h4>ลำดับการยืม</h4></th>

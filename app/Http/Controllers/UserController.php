@@ -46,8 +46,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // try {
-            //print_r($request);
             $request->validate(
                 [
                     'username'=>'required|unique:users|max:255',
@@ -74,18 +72,6 @@ class UserController extends Controller
              User::create($users_add);
 
             return redirect()->route('users.index')->with('success','เพิ่มข้อมูลสำเร็จ');
-
-
-            // $data = $request->getData();
-            
-            //User::create($data);
-
-            
-        // } catch (Exception $exception) {
-
-            // return back()->withInput()
-            //     ->with(['success_message' => 'บันทึกข้อมูลเรียบร้อยแล้ว.']);
-        // }
     }
 
     /**
@@ -98,11 +84,6 @@ class UserController extends Controller
     {
         $otp = rand(1000,9999);
         Log::info('otp =' . $otp);
-        // $user - User::where('mobile','=', $user->mobile)->update(['otp' => $otp]);
-        print_r($otp);
-
-        // return response()->json([$user], 200);
-        // return "This is show";
     }
 
     /**
@@ -127,23 +108,15 @@ class UserController extends Controller
      */
     public function update($id,Request $request)
     {
-        // $usernames = $request->username;
-        // $email1 = $request->email;
-
-        // $users = User::find($id);
-        // $users->update($usernames,$email1);
-
-        
-        // print_r($users);
+     
         $update = DB::table('users')->where('id', $id)->update(
             [
                 'username' => $request->username,
                 'email' => $request->email,
                 'names' => $request->names,
-                // 'position' => $request->position
             ]
         );
-        // $id->update($request->all());
+      
         if($update){
             return redirect()->route('users.index')->with('success','อัพเดทข้อมูลสำเร็จ');
         }else{
@@ -161,8 +134,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $users = User::findOrFail($id);
-        
-        //print_r($user);
+
         $users->delete();
         return redirect()->route('users.index')->with('success','ลบข้อมูลสำเร็จ');
     }

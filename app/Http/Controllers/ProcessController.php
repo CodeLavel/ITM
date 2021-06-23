@@ -41,7 +41,6 @@ class ProcessController extends Controller
 
     public function showCart(){
       $cart=Session::get('cart');
-      //print_r($cart);
       if($cart){
           return view('process.showCart',['cartItems'=>$cart]);
       }else{
@@ -49,14 +48,11 @@ class ProcessController extends Controller
       }
     }
 
-    public function deleteFormCart(Request $request,$id){ //ฟังก์ชันคืนอุปกรณ์ขณะยืม
+    public function deleteFormCart(Request $request,$id){ 
         $cart=$request->session()->get('cart');
-       
-          // print_r($cart->items[$id]['quantity']);
+
           $itemid = $cart->items[$id]['data']['id'];
           $totalorders = $cart->items[$id]['quantity'];
-          // print_r($itemid);
-          // print_r($totalorders);
           $datause = DB::table('durables')
                   ->select('use')
                   ->where('id', $itemid)->get();
@@ -65,12 +61,6 @@ class ProcessController extends Controller
           $update = DB::table('durables')
                         ->where('id', $itemid)
                         ->update(['use' => $total_all]);
-
-         //----------ยังไม่ใช้----------
-        //  if(array_key_exists($id,$cart->items)){
-        //   unset($cart->items[$id]);
-        // }
-        //----------ยังไม่ใช้----------
 
         if($update){
           unset($cart->items[$id]);
@@ -95,12 +85,6 @@ class ProcessController extends Controller
           'place'=>'required',
         ]);
       
-
-      // $cart=Session::get('cart');
-      // print_r($cart);
-      // dd($cart);
-     
-      // $create_Otp=DB::table('otp')->insert($newOrder);
       $cart=Session::get('cart');
         $rdate=$request->rdate;
         $fname=$request->fname;
@@ -135,14 +119,8 @@ class ProcessController extends Controller
             "borrow"=>"4"
             );
             
-            
             Session::put('variableName', $newOrder);
             $data = Session::get('variableName');
-            //เก็บ session
-            // print_r($data['fname']);
-            // dd($dataa);
-            
-            
 
             $create_Order=DB::table('orders')->insert($newOrder);
               $order_id=DB::getPDO()->lastInsertId();
@@ -180,74 +158,8 @@ class ProcessController extends Controller
                 }else{
                   DB::table('durablelog')->where('item_id', $item_id)->update(['total' => DB::raw('total+1')]);
                 }
-                
-            }
-            
+            } 
             return redirect()->route('otp')->with( ['newOrderItem' => $newOrderItem] );
-            //return redirect('/orders/otp');
-        
-
-  //           $api_url = 'https://notify-api.line.me/api/notify';
-            
-  //           $params = array(
-  //                   'message'        => 'รายการยืมครุภัณฑ์', //ข้อความที่ต้องการส่ง สูงสุด 1000 ตัวอักษร
-  //                   'order_id'        => $order_id,
-  //                   'item_name'        => $item_name,
-  //                    'name'         => $fname,
-  //                    'lname'         => $lname,
-  //                    'userID'         => $userID,
-  //                    'address'         => $address,
-  //                    'phone'         => $phone,
-  //                    'place'         => $place,
-  //                    'date'         => $date,
-  //   );
-  //           //print_r($cart);
-  //           $json = null;
-  //           //line ส่วนตัว : EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC
-  //           //line กลุ่ม Codelavel : CBhrL0GWdt3mG8XgMoFQMkKWvMZ1lxxUvhEWtZYUENL
-  //               $headers = [
-  //                   'Authorization: Bearer ' . 'EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC'
-  //               ];
-  //               $fields = array(
-  //                   'message' => $params['message']."\n"
-  //                   ."ลำดับ : ".$params['order_id']."\n"
-  //                   ."ชื่ออุปกรณ์ : ".$params['item_name']."\n"
-  //                   ."ชื่อ-นามสกุล : ".$params['name'] ." ". $params['lname']."\n"
-  //                   ."รหัสพนักงาน : ".$params['userID']."\n"
-  //                   ."สังกัด : ".$params['address']."\n"
-  //                   ."เบอร์โทร : ".$params['phone']."\n"
-  //                   ."สถานที่นำไปใช้ : ".$params['place']."\n"
-  //                   ."วันที่ส่งคืน : ".$params['date'],
-  //                 );
-                
-  //                   $ch = curl_init();
-                
-  //                   curl_setopt($ch, CURLOPT_URL, $api_url);
-  //                   curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-  //                   curl_setopt($ch, CURLOPT_POST, count($fields));
-  //                   curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-  //                   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  //                   curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                
-  //                   $res = curl_exec($ch);
-  //                   curl_close($ch);
-                
-  //                   if ($res == false)
-  //                       throw new Exception(curl_error($ch), curl_errno($ch));
-                
-  //                   $json = json_decode($res);
-
-  //           Session::forget("cart");
-  //           $order_info=$newOrder;
-  //           $order_info["order_id"]=$order_id;
-  //           $request->session()->put("order_info",$order_info);
-
-  //           Session()->flash("success","บันทึกข้อมูลเรียบร้อยแล้ว โปรดรอการอนุมัติจากผู้ดูแล");
-  //           return redirect('/orders');
-
-  //         }else{
-  //           return redirect('/durables');
-
         }
     }
 
@@ -259,7 +171,6 @@ class ProcessController extends Controller
         'order_id' => $order_ids
       );
       
-      // print_r($order);
       $otps=$request->otp;
         $otptable = DB::table('orders')->where('order_id', $order_ids)->first();
 
@@ -278,10 +189,7 @@ class ProcessController extends Controller
                           'address' =>$otptable->address,
                           'detail'        => 'ต้องการขอยืมครุภัณท์! (รอการอนุมัติ)',
           );
-                  //print_r($cart);
                   $json = null;
-                  //line ส่วนตัว : EUmOSV8uC8prPWpumXZpV5rNW1O0T3riYMsW5wCOzWC
-                  //line กลุ่ม Codelavel : CBhrL0GWdt3mG8XgMoFQMkKWvMZ1lxxUvhEWtZYUENL
                       $headers = [
                           'Authorization: Bearer ' . $linetoken->token
                       ];
@@ -316,12 +224,8 @@ class ProcessController extends Controller
        }else{
           return redirect()->back()->with( ['newOrderItem' => $order] );
       }
-      
     }
-
-
-
-    public function deleteFormDetail(Request $request,$id){ //ฟังก์ชันคืนอุปกรณ์ขณะยืม
+    public function deleteFormDetail(Request $request,$id){ 
       
         
         $datause = DB::table('orderitems')
@@ -347,23 +251,6 @@ class ProcessController extends Controller
                       
            
         }
-
-       //----------ยังไม่ใช้----------
-      //  if(array_key_exists($id,$cart->items)){
-      //   unset($cart->items[$id]);
-      // }
-      //----------ยังไม่ใช้----------
-
-  //     if($update){
-  //       unset($cart->items[$id]);
-  //     }
-      
-  //     $afterCart=$request->session()->get('cart');
-  //     $updateCart=new Cart($afterCart);
-  //     $updateCart->updateAmountQuantity();
-  //     $request->session()->put('cart',$updateCart);
-
-  //     return redirect('/durables/cart');
   }
     
 

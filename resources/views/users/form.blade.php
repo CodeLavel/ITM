@@ -19,12 +19,6 @@
         <label>ตำแหน่ง <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></label>
         <div class="col-md-8">
                 <select class="form-control" id="position" name="position">
-                        {{-- <option value="" style="display: none;" {{ old('catagory_id', optional($durable)->catagory_id ?: '') == '' ? 'selected' : '' }} disabled selected>-- เลือกสถานที่ --</option>
-                    @foreach ($catagories as $key => $catagory)
-                        <option value="{{ $key }}" {{ old('catagory_id', optional($durable)->catagory_id) == $key ? 'selected' : '' }}>
-                            {{ $catagory }}
-                        </option>
-                          @endforeach --}}
                           <option value="">เลือกตำแหน่ง</option>
                           <option value="นักวิชาการ">นักวิชาการ</option>
                 </select>

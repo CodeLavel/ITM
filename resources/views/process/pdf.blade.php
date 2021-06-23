@@ -75,8 +75,6 @@
     <br>
     <h4 class="title-list">การยืมครุภัณฑ์</h4>
   </div>
-  {{-- <div class="title-page"> --}}
-  {{-- </div> --}}
   <p class="header-date">พิมพ์วันที่ {{ $day }} เดือน {{ $month }} พ.ศ. {{ $year }}</p>
   <div class="table-responsive">
     <table class="table" style="width:100%">
@@ -135,12 +133,6 @@
                         @endphp
                         <td><h5>{{$day."/".$mount."/".$year}}</h5></td>
                         <td><h5>{{$day2."/".$mount2."/".$year2}}</h5></td>
-          
-          
-          
-          {{-- <td style='word-break:break-all' width="8%">
-            <a href="/orders/detail/{{$order->order_id}}" class="btn btn-primary">รายละเอียด</a>
-          </td>     --}}
         </tr>
         @endforeach
       </tbody>

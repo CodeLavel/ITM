@@ -37,21 +37,7 @@
               </div><!-- end col -->
 
                   <div class="col-xl-10">
-                      <div class="card-box" dir="ltr">
-                        <!--
-                        <form class="app-search pull-left" action="/durables/search" method="get" style="margin:auto;max-width:300px">
-                            <div class="app-search-box">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="search" placeholder="กรอกชื่อครุภัณฑ์...">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-info" type="submit">
-                                            <i class="fa fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                      -->
+                      <div class="card-box" dir="ltr"> 
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       @if(isset($cartItems))
                         <span class="badge offset-11" style="background:red">{{$cartItems->totalQuantity}}</span>

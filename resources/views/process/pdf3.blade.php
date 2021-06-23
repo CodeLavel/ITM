@@ -75,22 +75,17 @@
     <br>
     <h4 class="title-list">รายการยืมครุภัณฑ์คืนแล้ว</h4>
   </div>
-  {{-- <div class="title-page"> --}}
-  {{-- </div> --}}
   <p class="header-date">พิมพ์วันที่ {{ $day }} เดือน {{ $month }} พ.ศ. {{ $year }}</p>
   <div class="table-responsive">
     <table class="table" style="width:100%">
       <thead class="thead-light">
-        {{-- <colgroup span= "1" width="10"></colgroup> --}}
         <tr>
                         <th scope="col" style="width: 50px"><h4>ลำดับ</h4></th>
                         <th scope="col" style="width: 50px"><h4>ลำดับการยืม</h4></th>
                         <th scope="col"><center><h4>ชื่อ-นามสกุล</h4></center></th>
                         <th scope="col" style="width: 150px"><center><h4>ชื่อครุภัณฑ์</h4></center></th>
                         <th scope="col"><h4>วันที่ยืม</h4></th>
-                        <th scope="col"><h4>วันที่คืน</h4></th>
-                        
-                        
+                        <th scope="col"><h4>วันที่คืน</h4></th>            
         </tr>
       </thead>
       <tbody>
@@ -133,9 +128,6 @@
                         @endphp
                         <td><h5>{{$day."/".$mount."/".$year}}</h5></td>
                         <td><h5>{{$day2."/".$mount2."/".$year2}}</h5></td>
-          
-          
-
         </tr>
         @endforeach
       </tbody>

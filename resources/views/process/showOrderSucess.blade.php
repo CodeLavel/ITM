@@ -63,9 +63,6 @@
                         <td style='word-break:break-all'><h5>{{$day2."/".$mount2."/".$year2}}</h5></td>
                         <td style='word-break:break-all'><center><h5>{{$logs->fname}} {{$logs->lname}}</h5></center></td>
                         <td style='word-break:break-all'><center><h5>{{$logs->item_name}}</h5></center></td>
-                        {{-- <td style='word-break:break-all' width="8%">
-                          <a href="/orders/detail/{{$order->order_id}}" class="btn btn-primary">รายละเอียด</a>
-                        </td>     --}}
                       </tr>
                       @endforeach
                     </tbody>

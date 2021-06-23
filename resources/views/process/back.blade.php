@@ -57,36 +57,13 @@
                                     </div>
 
                                       <div class="form-group row">
-                                        {{-- <input type="hidden" name="item_amount" value="{{$Ordersall->item_amount}}" id="amount"> --}}
+                                       
                                         <label for="amount" class="col-md-3 col-form-label text-md-right">จำนวน(คืน) :</label>
                                           <div class="col-md-6">
                                             <input type="text" name="amount" value="{{$Ordersall->item_amount}}" onkeyup="Calculation()" class="form-control" id="sum" readonly>
-                                            {{-- <input type="text" name="amount" value="{{$Ordersall->item_amount}}" class="form-control" id="num2" onkeyup="Calculation()"
-                                            pattern="[0-9.]+" onkeypress="number(event)" placeholder="ระบุจำนวนคืน. . ." required> --}}
+                                            
                                           </div>
                                       </div>
-
-                                      {{-- <script>
-                                          function Calculation() {
-                                              
-                                              var num1 = document.getElementById('num1').value;
-                                              var num2 = document.getElementById('num2').value;
-                                              document.getElementById('sum').value = parseFloat(num1) + parseFloat(num2);
-                                          }
-
-                                          // $.ajax({
-                                          //     type: "POST",
-                                          //     url: "inbound_workorder_edit.aspx/getPartCustomer",
-                                          //     data: '{pcustid: "' + this.value + '" }',
-                                          //     contentType: "application/json; charset=utf-8",
-                                          //     dataType: "json",
-                                          //     success: function (rs) {
-                                          //         var SplitData = rs.d.split('|');
-                                          //         $('#inputWODetailSize').val(SplitData[1] + ' ' + SplitData[2] + ' ' + SplitData[3]);
-                                          //     }
-                                          // });
-                                      </script> --}}
-
                                       <div class="offset-3">&nbsp;
                                           <button type="submit" class="btn btn-success">
                                               <i class="fas fa-save"></i> บันทึก

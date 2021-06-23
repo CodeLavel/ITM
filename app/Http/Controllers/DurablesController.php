@@ -59,7 +59,6 @@ class DurablesController extends Controller
         );
 
         $image = $request->file('photo');
-                // เช็คว่ามีการเลือกไฟล์ภาพเข้ามาหรือไม่
                 if(!empty($image)){
                     $file_name = "product_".time().".".$image->getClientOriginalExtension();
                     if($image->getClientOriginalExtension() == "jpg" or $image->getClientOriginalExtension() == "png"){
@@ -86,8 +85,6 @@ class DurablesController extends Controller
                 }
 
         try {
-
-            // $data = $request->getData();
             Durable::create($data);
 
             return redirect()->route('durables.durable.index')

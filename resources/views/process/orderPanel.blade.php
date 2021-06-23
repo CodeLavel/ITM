@@ -51,12 +51,6 @@
                         <th scope="col"><h4>เบอร์โทรศัพท์</h4></th>
                         <th scope="col"><h4>สถานที่นำไปใช้</h4></th>
                         <th scope="col"><h4>รายละเอียด</h4></th>
-                        {{-- @if(auth::check())
-                        <th scope="col"><h4>สถานะ</h4></th>
-                        @else
-                        <th scope="col"></th>
-                        @endif --}}
-                        {{-- <th scope="col"><h4>ยืม/คืน</h4></th> --}}
                         <th scope="col"><h4>หมายเหตุ</h4></th>
                       </tr>
                     </thead>
@@ -105,110 +99,8 @@
                         <td style='word-break:break-all' width="8%">
                           <a href="/orders/detail/{{$order->order_id}}" class="btn btn-primary">รายละเอียด</a>
                         </td>
-                        {{-- <td>
-                          @if(auth::check())
-
-                              @if ($order->status == '1')
-                                    <a href="#" class="btn btn-warning text-white" onclick="addmhsForm({{ $order->order_id }});" id="orderall" data-id="{{ $order->order_id }}" data-toggle="modal" data-target="#myModal{{ $order->order_id }}">รออนุมัติ</a>
-                                  @elseif ($order->status == '2')
-                                    <a href="#" class="btn btn-success disabled" onclick="addmhsForm();" id="orderall" data-toggle="modal" data-target="#myModal{{ $order->order_id }}">อนุมัติ</a>
-                                  @elseif ($order->status == '3')
-                                    <a href="#" class="btn btn-danger" onclick="addmhsForm();" id="orderall" data-toggle="modal" data-target="#myModal{{ $order->order_id }}">ไม่อนุมัติ</a>
-                              @endif
-
-                          @endif
-                        </td> --}}
-                        {{-- <script type="text/javascript">
-                          $(document).ready(function() {
-                            $("#orderall").click(function () {
-                              // var passedID = $(this).data('id');
-                            console.log("ok");
-                          // var building_id = $(this).val();
-                          // if(building_id){
-                          //         $.ajax({
-                          //             type: "GET",
-                          //             url:'/backend/getmeetingroomlist/'+building_id,
-                          //             dataType: 'json',
-                          //             success: function(response){
-                          //                 $('#mto_room').html('<option value="">เลือกห้องประชุม</option>'); 
-                          //                 $.each(response,function(key,value){
-                          //                 $("#mto_room").append('<option value="'+value+'">'+value+'</option>');
-                          //               }); 
-                          //               }
-                          //           });
-                          //       }
-                            });    
-                        });
-                        </script> --}}
-                        {{-- <td>
-
-                       @if(auth::check())
-                          @if ($order->status == '2')
-                              @if ($order->borrow == '4')
-                                    <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#myModal1{{ $order->order_id }}">อยู่ระหว่างยืม</a>
-                                  @else ($order->borrow == '5')
-                                    <a href="#" class="btn btn-info disabled" data-toggle="modal" data-target="#myModal1{{ $order->order_id }}">คืนแล้ว</a>
-                              @endif
-                          @endif
-
-                        @else
-
-                          @if ($order->status == '2')
-                              @if ($order->borrow == '4')
-                                    <a class="text-danger" > <h5 class="text-danger"><i class="fas fa-sync-alt"></i> อยู่ระหว่างยืม</h5></a>
-                                  @else ($order->borrow == '5')
-                                    <a class="text-info" > <h5 class="text-info"><i class="fas fa-sign-in-alt"></i> คืนแล้ว</h5></a>
-                              @endif
-                            @endif
-                          @endif
-                        </td> --}}
-
                         <td style='word-break:break-all' width="7%"><h5>{{$order->comment}}</h5></td>
                       </tr>
-
-                      
-
-                        <!-- The Modal1 -->
-                          {{-- <div class="modal fade" id="myModal1{{ $order->order_id }}">
-                              <div class="modal-dialog modal-dialog py-5">
-                              <div class="modal-content">
-
-                                  <!-- Modal Header -->
-                                  <div class="modal-header">
-                                    <h4 class="modal-title">ยืม/คืน</h4>
-                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                  </div>
-
-                                  {{-- <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="/borrow/edit/{{$order->order_id}}">
-
-                                          {{ csrf_field() }}
-                                          {{ method_field('PUT') }}
-                                  <!-- Modal body -->
-                                  <div class="modal-body">
-                                          <div class="form-group">
-                                                  <label>ชื่อผู้ยืม : </label>
-                                                  {{$order->fname}} {{$order->lname}}
-                                          </div>
-
-                                          <div class="form-group">
-                                                  <select name="borrow" class="form-control">
-                                                          <option value="4" @if($order->borrow == '4') selected @endif>อยู่ระหว่างยืม</option>
-                                                          <option value="5" @if($order->borrow == '5') selected @endif>คืนแล้ว</option>
-                                                  </select>
-                                          </div>
-
-                                  </div>
-
-                                  <!-- Modal footer -->
-                                  <div class="modal-footer">
-                                      <button type="submit" class="btn btn-success">บันทึก</button>
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-                                  </div>
-                                </form> --}}
-                              {{-- </div>
-                              </div>
-                          </div>  --}}
-
                       @endforeach
                     </tbody>
                   </table>

@@ -104,16 +104,7 @@
                             </li>
                             <li>
                                 <a href="{{ url('categories') }}">หมวดหมู่</a>
-                            </li>
-                            {{-- <li>
-                                <a href="{{ url('line/sentLine') }}">LineToken</a>
-                            </li> --}}
-                            {{-- <li>
-                                <a href="{{ url('catagories') }}">สถานที่ครุภัณฑ์</a>
-                            </li> --}}
-                            {{-- <li>
-                                <a href="{{ url('users') }}">ข้อมูลพนักงาน</a>
-                            </li> --}}
+                            </li>    
                         </ul>
                     </li>
                     <li>
@@ -142,21 +133,6 @@
                             
                         </ul>
                     </li>
-                {{-- <li>
-                    <a href="{{ url('orders/showordermount') }}">
-                        <i class="fas fa-book-open"></i>
-                        <span> รายการยืมประจำเดือน </span>
-                       
-                    </a>
-                    
-                </li>
-                <li>
-                    <a href="{{ url('orders/showorder') }}">
-                        <i class="fas fa-list"></i>
-                        <span> สถิติการยืมทั้งหมด </span>
-                       
-                    </a>
-                </li> --}}
                 <li>
                     <a href="{{ url('users') }}">
                         <i class="fas fa-address-book"></i>
@@ -165,26 +141,6 @@
                     </a>
                 </li>
                     @endif
-
-                    {{-- <li>
-                        <a href="{{url('home')}}">
-                            <i class="fa fa-list"></i>
-                            <span> รายการครุภัณฑ์ </span>
-                        </a>
-                    </li> --}}
-
-                    {{-- <li>
-                        <a href="{{url('orders')}}">
-                            <i class="fas fa-clipboard-list"></i>
-                            <span> รายการยืมครุภัณฑ์ </span>
-                        </a>
-                    </li> --}}
-                    {{-- <li>
-                        <a href="{{url('orders')}}">
-                            <i class="fas fa-clipboard-list"></i>
-                            <span> ข้อมูลพนักงาน </span>
-                        </a>
-                    </li> --}}
                 </ul>
 
             </div>

@@ -116,14 +116,7 @@
                                               {{$orderitem->userID}}
                                               <label>|<b> เบอร์โทร : </b></label>
                                               {{$orderitem->phone}} 
-                                              {{-- <br><label for="place"><h5>ครุภัณฑ์ที่ต้องการยืม : </h5></label>
-                                              <br><span>ลำดับ</span> <span>ชื่อครุภัณฑ์</span> <span>หมวดหมู่</span> <span>จำนวน</span> --}}
-                                              {{-- <table id="records_table"></table> --}}
-                                              {{-- <p id="result"> </p> --}}
-                                      </div>
-                                      {{-- <div class="form-group">
-                                        
-                                      </div> --}}
+                                      </div> 
                                       <div class="form-group">
                                         <select name="status" class="form-control">
                                                 <option value="1" @if($orderitem->status == '1') selected @endif>รออนุมัติ</option>

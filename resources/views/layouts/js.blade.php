@@ -60,36 +60,7 @@
                                 // alert(response[i].item_amount);
                                   text = key+1 +" | "+response[i].item_name+" | "+ response[i].item_category+" | "+ response[i].item_amount;
                                   document.getElementById("result").innerHTML = text;
-                            }
-                        
-                        
-                        // $('#testdiv').prepend("<span class='test' data-unixtime='" + entry[2] + "'>time: " + entry[0] + "<br/> tablename: " + entry[1].tablename +"<br/>table seats:" + entry[1].tableseats + "<br/><br/></span><br>");
-                        // response.forEach((entry) => {
-                        //     $('#testdiv').prepend("<span class='test' data-unixtime='" + entry[2] + "'>time: " + entry[0] + "<br/> tablename: " + entry[1].tablename +"<br/>table seats:" + entry[1].tableseats + "<br/><br/></span><br>");
-                        //     })
-                        // var result = document.getElementById("result");
-                        // var obj = JSON.parse(response);
-                        //     for (var key in obj) {
-                        //         result.innerHTML += "<br/>" + key + ": ";
-                        //         for (var prop in obj[key]) {
-                        //             result.innerHTML += "<br/>" + prop + " = " + obj[key][prop];
-                        //         }
-                        //     }
-                        //     result.innerHTML += "<br/>Total = " + obj.total;
-                            // console.log(key);
-                            // console.log(value['item_name']);
-                            
-                            // result.innerHTML += "<br/>" + key + " = " + value['item_name'];
-                            
-                        // for(var i=0; i<key.length; i++){
-                        //     // $('#testdiv').text(key[i]);
-                        //     console.log(key.length);
-                        // }
-                        
-                        //   console.log(`${key}: ${value['item_name']},${value['item_category']},${value['item_amount']}`);
-                        //   for(var i = 0; i < value.length; i++){ 
-                        //         document.getElementById('demo').innerHTML+= '<p>'+value[i]+'</p>;
-                        //     }
+                            } 
                         });
                     }
                 });
