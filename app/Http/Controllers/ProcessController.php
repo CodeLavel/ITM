@@ -321,7 +321,50 @@ class ProcessController extends Controller
 
 
 
+    public function deleteFormDetail(Request $request,$id){ //ฟังก์ชันคืนอุปกรณ์ขณะยืม
+      
+        
+        $datause = DB::table('orderitems')
+                ->where('order_id', $id)->get();
+                
+         $itemid = $datause[0]->item_id; 
+         $itemamount = $datause[0]->item_amount; 
+        
+        $durable = DB::table('durables')
+                ->where('id', $itemid)->get();
 
+        $useaccess = $durable[0]->use;
+                
+         $total_all = $useaccess+$itemamount;
+
+        $update = DB::table('durables')
+                      ->where('id', $itemid)
+                      ->update(['use' => $total_all]);
+        if($update){
+            $test = DB::table('orderitems')
+                      ->where('item_id', $itemid)->where('order_id', $id)
+                      ->update(['item_status' => 1]);
+                      
+           
+        }
+
+       //----------ยังไม่ใช้----------
+      //  if(array_key_exists($id,$cart->items)){
+      //   unset($cart->items[$id]);
+      // }
+      //----------ยังไม่ใช้----------
+
+  //     if($update){
+  //       unset($cart->items[$id]);
+  //     }
+      
+  //     $afterCart=$request->session()->get('cart');
+  //     $updateCart=new Cart($afterCart);
+  //     $updateCart->updateAmountQuantity();
+  //     $request->session()->put('cart',$updateCart);
+
+  //     return redirect('/durables/cart');
+  }
     
 
 }

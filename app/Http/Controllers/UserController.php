@@ -48,6 +48,20 @@ class UserController extends Controller
     {
         // try {
             //print_r($request);
+            $request->validate(
+                [
+                    'username'=>'required|unique:users|max:255',
+                    'names'=>'required|unique:users|max:255',
+                    'email'=>'required|unique:users|max:255',
+                    'position'=>'required|max:255',
+                ],
+                [
+                    'username.unique' => 'มีข้อมูลซ้ำกัน กรุณาเปลี่ยนชื่อผู้ใช้งานใหม่',
+                    'names.unique' => 'มีข้อมูลซ้ำกัน กรุณาเปลี่ยนชื่อ-นามสกุลใหม่',
+                    'email.unique' => 'มีข้อมูลซ้ำกัน กรุณาเปลี่ยนอีเมล์ใหม่',
+                    'position.required' => 'โปรดระบุ ตำแหน่ง.',
+                ]
+                );
             $users_add = array(
                 'username' => $request->username,
                 'names' => $request->names,
@@ -57,14 +71,16 @@ class UserController extends Controller
             );
             
             
-            User::create($users_add);
+             User::create($users_add);
+
+            return redirect()->route('users.index')->with('success','เพิ่มข้อมูลสำเร็จ');
 
 
             // $data = $request->getData();
             
             //User::create($data);
 
-            return redirect()->route('users.index')->with('success','เพิ่มข้อมูลสำเร็จ');
+            
         // } catch (Exception $exception) {
 
             // return back()->withInput()
@@ -131,7 +147,7 @@ class UserController extends Controller
         if($update){
             return redirect()->route('users.index')->with('success','อัพเดทข้อมูลสำเร็จ');
         }else{
-            return "ไม่สำเร็จ";
+            return redirect()->route('users.index')->with('error','อัพเดทข้อมูลไม่สำเร็จ');
         }
         
     }

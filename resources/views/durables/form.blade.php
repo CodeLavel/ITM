@@ -26,7 +26,7 @@
 <div class="form-group {{ $errors->has('duID') ? 'has-error' : '' }}">
     <label for="duID" class="col-md-2 control-label">รหัสครุภัณฑ์ <span style="color: red; font-size: 12px">(จำเป็นต้องกรอก)</span></label>
     <div class="col-md-10">
-        <input class="form-control" name="duID" type="text" id="duID" value="{{ old('duID', optional($durable)->duID) }}" minlength="1" placeholder="กรอกรหัสครุภัณฑ์...">
+        <input class="form-control" name="duID" type="text" id="duID" value="{{ old('duID', optional($durable)->duID) }}" minlength="1" placeholder="___-__-__-__-__-__-___" data-slots="_" data-accept="\w" size="13">
         {!! $errors->first('duID', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

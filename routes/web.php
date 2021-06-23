@@ -23,6 +23,7 @@ Route::get('/durables/catagory/{id}', 'HomeController@cata');
 Route::get('/durables/details/{id}', 'HomeController@details');
 Route::get('/durables/cart','ProcessController@showCart');
 Route::get('/durables/cart/deleteFormCart/{id}','ProcessController@deleteFormCart');
+Route::get('/durables/cart/deleteFormDetail/{id}','ProcessController@deleteFormDetail');
 Route::get('/durables/search','ProcessController@searchDurable');
 Route::post('/durables/addQuantityToCart/{id}','ProcessController@addQuantityToCart');
 Route::get('/durables/checkout','ProcessController@checkout');

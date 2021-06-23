@@ -26,6 +26,7 @@
                       @if(auth::check())
                         <th></th>
                       @endif
+                      <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -63,7 +64,14 @@
                           @endif
                           
                         </th>
-                      
+                        
+                        <th class="py-3"><br><br>
+                          @if ($orderitem->item_status == null && $orderitem->status == '1')
+                          <a class="badge badge-danger" href="/durables/cart/deleteFormDetail/{{$orderitem->order_id}}" onclick="return confirm('คุณต้องการยกเลิกการยืมครุภัณฑ์นี้หรือไม่ ?')">
+                            <i class="fa fa-times"></i></a>
+                            @elseif ($orderitem->item_status == '1')
+                        </th>
+                        @endif
                         
                       @endif
                       </tr>
@@ -76,12 +84,12 @@
                               @if ($orderitem->status == '1')
                                     <a href="#" class="btn btn-warning text-white pull-right" style="margin-right: 10px" onclick="addmhsForm({{ $orderitem->order_id }});" id="orderall" data-id="{{ $orderitem->order_id }}" data-toggle="modal" data-target="#myModal{{ $orderitem->order_id }}">รออนุมัติ</a>
                                   @elseif ($orderitem->status == '2')
-                                    <a href="#" class="btn btn-success disabled pull-right" style="margin-right: 10px" onclick="addmhsForm();" id="orderall" data-toggle="modal" data-target="#myModal{{ $orderitem->order_id }}">อนุมัติ</a>
+                                    {{-- <a href="#" class="btn btn-success disabled pull-right" style="margin-right: 10px" onclick="addmhsForm();" id="orderall" data-toggle="modal" data-target="#myModal{{ $orderitem->order_id }}">อนุมัติ</a> --}}
                                   @elseif ($orderitem->status == '3')
                                     <a href="#" class="btn btn-danger pull-right" style="margin-right: 10px" onclick="addmhsForm();" id="orderall" data-toggle="modal" data-target="#myModal{{ $orderitem->order_id }}">ไม่อนุมัติ</a>
                               @endif
 
-                          @endif
+                  @endif
                           <!-- The Modal -->
                         <div class="modal fade" id="myModal{{ $orderitem->order_id }}">
                           <div class="modal-dialog modal-dialog py-5">

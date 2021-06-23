@@ -44,6 +44,11 @@
           {{$msg}}
         </div>
         @endif
+        @if($msg =Session::get('error'))
+        <div class="alert alert-danger">
+          {{$msg}}
+        </div>
+        @endif
         @if(count($users) == 0)
             <div class="panel-body text-center">
                 <h4>ไม่มีผู้ดูแลระบบ.</h4>
