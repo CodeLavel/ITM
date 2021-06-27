@@ -45,7 +45,7 @@
                         <span class="badge offset-11" style="background:red">{{$cartItems->totalQuantity}}</span>
                       @endif
 
-                        <a class="btn btn-primary pull-right" title="ตะกร้ายืมครุภัณฑ์" href="/durables/cart" role="button">
+                        <a class="btn btn-primary pull-right" title="ตะกร้ายืมครุภัณฑ์" href="{{url('/durables/cart')}}" role="button">
                             <i class="fas fa-shopping-cart"></i>
                         </a>
 
@@ -93,7 +93,7 @@
                                             <td><br><br><h4>{{$durable->use}}</h4></td>
 
                                         @if($durable->use > 0)
-                                            <td><br><br><a href="/durables/details/{{$durable->id}}" title="ยืม" class="btn btn-success"><i class="fas fa-cart-plus"></i></a></td>
+                                            <td><br><br><a href="{{url('/durables/details')}}/{{$durable->id}}" title="ยืม" class="btn btn-success"><i class="fas fa-cart-plus"></i></a></td>
                                             @else
                                             <td><br><br><label class="text-danger"><h4 class="text-danger"><i class="fas fa-times"></i> หมด</h4></label></td>
                                         @endif

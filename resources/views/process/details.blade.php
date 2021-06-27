@@ -63,7 +63,7 @@
                                       </div>
                                     </div>
 
-                                    <form action="/durables/addQuantityToCart/{{$durable->id}}" method="post">
+                                    <form action="{{url('/durables/addQuantityToCart')}}/{{$durable->id}}" method="post">
                                     {{ csrf_field() }}
                                       <div class="form-group row">
                                         <label for="#" class="col-md-2 col-form-label text-md-right">จำนวน(คงเหลือ) : </label>
@@ -105,7 +105,7 @@
                                               <i class="fas fa-save"></i> บันทึก
                                           </button>
 
-                                          <a href="/home" class="btn btn-primary">
+                                          <a href="{{url('/home')}}" class="btn btn-primary">
                                               <i class="fas fa-times"></i> ยกเลิก
                                           </a>
                                       </div>
